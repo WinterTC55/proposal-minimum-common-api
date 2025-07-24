@@ -1,0 +1,30 @@
+name: bikeshed lint
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+
+  bikeshed:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: install bikeshed
+        run: |
+          python -m pip install --upgrade pip
+          pip install bikeshed
+          bikeshed update
+
+      - name: lint
+        run: |
+          bikeshed spec index.bs /dev/null
