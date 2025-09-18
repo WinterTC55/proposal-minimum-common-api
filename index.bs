@@ -41,7 +41,6 @@ Interfaces:
 * {{AbortSignal}} [[!DOM]]
 * {{Blob}} [[!FILEAPI]]
 * {{ByteLengthQueuingStrategy}} [[!STREAMS]]
-* {{CloseEvent}} [[!HTML]]
 * {{CompressionStream}} [[!COMPRESSION]]
 * {{CountQueuingStrategy}} [[!STREAMS]]
 * {{Crypto}} [[!WEBCRYPTO]]
