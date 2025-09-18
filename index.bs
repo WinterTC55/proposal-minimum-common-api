@@ -41,6 +41,7 @@ Interfaces:
 * {{AbortSignal}} [[!DOM]]
 * {{Blob}} [[!FILEAPI]]
 * {{ByteLengthQueuingStrategy}} [[!STREAMS]]
+* {{CloseEvent}} [[!HTML]]
 * {{CompressionStream}} [[!COMPRESSION]]
 * {{CountQueuingStrategy}} [[!STREAMS]]
 * {{Crypto}} [[!WEBCRYPTO]]
@@ -60,6 +61,9 @@ Interfaces:
     Cloudflare Workers ignores all parameters.
 
 * {{Headers}} [[!FETCH]]
+* {{MessageChannel}} [[!HTML]]
+* {{MessageEvent}} [[!HTML]]
+* {{MessagePort}} [[!HTML]]
 * {{PromiseRejectionEvent}} [[!HTML]]
 * {{ReadableByteStreamController}} [[!STREAMS]]
 * {{ReadableStream}} [[!STREAMS]]
