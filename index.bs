@@ -116,9 +116,7 @@ The Global Scope {#global-scope}
 
 The exact type of the global scope (`globalThis`) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like {{Window}}, {{Worker}}, {{WorkerGlobalScope}}, and so forth. To simplify conformance, all interfaces, methods, and properties defined by this specification MUST be exposed on the runtime's relevant global scope (e.g., `globalThis.crypto`, `globalThis.ReadableStream`, etc).
 
-With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using the `readonly` attribute. To avoid introducing breaking changes, runtimes conforming to this specification MAY choose to ignore the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
-
-TODO: link to webidl for readonly attribute
+With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. [[!WEBIDL]] To avoid introducing breaking changes, runtimes conforming to this specification MAY choose to ignore the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
 
 The global object on {{Window}}-like and worker environments SHOULD always be an instance of {{EventTarget}}. Web-interoperable runtimes SHOULD follow the <a>report an exception</a> algorithm, and the JavaScript <a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a> host hook, as defined in [[HTML]]. This includes firing the {{Window/error}}, {{Window/unhandledrejection}} and {{Window/rejectionhandled}} events on the global object.
 
