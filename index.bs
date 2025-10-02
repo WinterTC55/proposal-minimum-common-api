@@ -137,7 +137,7 @@ The [=default `User-Agent` value=] is provided such that application code can re
 
 The [=default `User-Agent` value=] SHOULD be treated as a single, complete, opaque, unstructured value. It is RECOMMENDED that the value be limited to a single `product` token excluding the optional `product-version`. The value SHOULD NOT include any `comment` components.
 
-> Note: For instance, `navigator.userAgent = 'MyRuntime'`.
+Note: For instance, `navigator.userAgent` could be set to `'MyRuntime'`.
 
 Extensions {#extensions}
 ========================
