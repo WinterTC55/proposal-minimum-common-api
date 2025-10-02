@@ -111,8 +111,6 @@ All of the following methods and properties MUST be exposed on the global object
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/validate()}} [[!WASM-JS-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/JSTag}} [[!WASM-JS-API-2]]
 
-The `globalThis`.{{performance}} property MUST be an instance of {{Performance}} interface.
-
 The Global Scope {#global-scope}
 ================================
 
