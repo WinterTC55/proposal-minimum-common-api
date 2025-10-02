@@ -30,6 +30,11 @@ The Web Platform is the combination of technology standards defined by organizat
 A <dfn>Web-interoperable Runtime</dfn> is any ECMAScript-based application runtime environment that implements the subset of Web Platform APIs outlined in this specification.
 While this term is intentionally broad to also encompass Web Browsers, the primary focus here is on outlining expectations for non-browser runtimes.
 
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+"OPTIONAL" in this document are to be interpreted as described in
+[[!RFC2119]].
+
 Common API Index {#api-index}
 =========================
 
