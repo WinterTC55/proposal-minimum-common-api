@@ -33,9 +33,9 @@ While this term is intentionally broad to also encompass Web Browsers, the prima
 Common API Index {#api-index}
 =========================
 
-All <a>Web-interoperable Runtimes</a> conforming to this specification SHALL implement each of the following Web Platform APIs in accordance with their normative requirements except where modified here. Where any conforming runtime environment chooses (either by necessity or otherwise) to diverge from a normative requirement of the specification, clear explanations of such divergence MUST be made clearly and readily available in the documentation.
+All <a>Web-interoperable Runtimes</a> conforming to this specification MUST implement each of the following Web Platform APIs. These SHALL be implemented in accordance with their normative requirements except where modified here. Where any conforming runtime environment chooses (either by necessity or otherwise) to diverge from a normative requirement of the specification, clear explanations of such divergence MUST be made clearly and readily available in the documentation.
 
-Interfaces:
+All of the following interfaces MUST be exposed on the global object accessible through `globalThis`:
 
 * {{AbortController}} [[!DOM]]
 * {{AbortSignal}} [[!DOM]]
@@ -53,16 +53,11 @@ Interfaces:
 * {{EventTarget}} [[!DOM]]
 * {{File}} [[!FILEAPI]]
 * {{FormData}} [[!XHR]]
-
-    Issue: The {{FormData}} constructor optionally takes {{HTMLFormElement}} and {{HTMLElement}} as parameters.
-    TODO: Figure out what implementations without DOM support should do here.
-    Node.js and Deno throw if the first parameter is not `undefined` but ignore the second parameter.
-    Cloudflare Workers ignores all parameters.
-
 * {{Headers}} [[!FETCH]]
 * {{MessageChannel}} [[!HTML]]
 * {{MessageEvent}} [[!HTML]]
 * {{MessagePort}} [[!HTML]]
+* {{Performance}} [[!HR-TIME]]
 * {{PromiseRejectionEvent}} [[!HTML]]
 * {{ReadableByteStreamController}} [[!STREAMS]]
 * {{ReadableStream}} [[!STREAMS]]
@@ -87,11 +82,16 @@ Interfaces:
 * {{WebAssembly}}.{{Memory}} [[!WASM-JS-API-2]]
 * {{WebAssembly}}.{{Module}} [[!WASM-JS-API-2]]
 * {{WebAssembly}}.{{Table}} [[!WASM-JS-API-2]]
+* {{WebAssembly}}.{{Tag}} [[!WASM-JS-API-2]]
+* {{WebAssembly}}.{{Exception}} [[!WASM-JS-API-2]]
+* {{WebAssembly}}.{{CompileError}} [[!WASM-JS-API-2]]
+* {{WebAssembly}}.{{LinkError}} [[!WASM-JS-API-2]]
+* {{WebAssembly}}.{{RuntimeError}} [[!WASM-JS-API-2]]
 * {{WritableStream}} [[!STREAMS]]
 * {{WritableStreamDefaultController}} [[!STREAMS]]
 * {{WritableStreamDefaultWriter}} [[!STREAMS]]
 
-Global methods / properties:
+All of the following methods and properties MUST be exposed on the global object accessible through `globalThis`:
 
 * {{globalThis}} [[!ECMASCRIPT]]
 * `globalThis.`{{atob()}} [[!HTML]]
@@ -103,8 +103,7 @@ Global methods / properties:
 * `globalThis.onerror` (on {{GlobalEventHandlers/onerror|Window}} and {{WorkerGlobalScope/onerror|WorkerGlobalScope}}) [[!HTML]]
 * `globalThis.onunhandledrejection` (on {{WindowEventHandlers/onunhandledrejection|Window}} and {{WorkerGlobalScope/onunhandledrejection|WorkerGlobalScope}}) [[!HTML]]
 * `globalThis.onrejectionhandled` (on {{WindowEventHandlers/onrejectionhandled|Window}} and {{WorkerGlobalScope/onrejectionhandled|WorkerGlobalScope}}) [[!HTML]]
-* `globalThis.`{{performance}}.{{Performance/now()}} [[!HR-TIME]]
-* `globalThis.`{{performance}}.{{timeOrigin}} [[!HR-TIME]]
+* `globalThis.`{{performance}} [[!HR-TIME]]
 * `globalThis.`{{queueMicrotask()}} [[!HTML]]
 * `globalThis.`{{reportError()}} [[!HTML]]
 * `globalThis.`self (on {{Window/self|Window}} and {{WorkerGlobalScope/self|WorkerGlobalScope}}) [[!HTML]]
@@ -123,25 +122,25 @@ Global methods / properties:
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/instantiate()}} [[!WASM-JS-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/instantiateStreaming()}} [[!WASM-WEB-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/validate()}} [[!WASM-JS-API-2]]
+* `globalThis.`{{WebAssembly}}.{{WebAssembly/JSTag}} [[!WASM-JS-API-2]]
 
 The Global Scope {#global-scope}
 ================================
 
-The exact type of the global scope (`globalThis`) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like {{Window}}, {{Worker}}, {{WorkerGlobalScope}}, and so forth. To simplify conformance, all Interfaces, methods, and properties defined by this specification MUST be exposed on the runtime's relevant global scope (e,g., `globalThis.crypto`, `globalThis.ReadableStream`, etc).
+The exact type of the global scope (`globalThis`) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like {{Window}}, {{Worker}}, {{WorkerGlobalScope}}, and so forth. To simplify conformance, all interfaces, methods, and properties defined by this specification MUST be exposed on the runtime's relevant global scope (e.g., `globalThis.crypto`, `globalThis.ReadableStream`, etc).
 
-With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using the `readonly` attribute. To avoid introducing breaking changes, runtimes conforming to this specification MAY choose to ignore the `readonly` attribute for properties being added to the global scope.
+With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. [[!WEBIDL]] To avoid introducing breaking changes, runtimes conforming to this specification MAY choose to ignore the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
 
-The global object on {{Window}}-like and worker environments must always be an instance of {{EventTarget}}. Web-interoperable runtimes must follow the <a>report an exception</a> algorithm, and the JavaScript <a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a> host hook, as defined in [[HTML]]. This includes firing the {{Window/error}}, {{Window/unhandledrejection}} and {{Window/rejectionhandled}} events on the global object.
+The global object on {{Window}}-like and worker environments SHOULD always be an instance of {{EventTarget}}. Web-interoperable runtimes SHOULD follow the <a>report an exception</a> algorithm, and the JavaScript <a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a> host hook, as defined in [[!HTML]]. This includes firing the {{Window/error}}, {{Window/unhandledrejection}} and {{Window/rejectionhandled}} events on the global object.
 
-Note: Some runtimes might not support firing those events following the HTML specification exactly due to legacy reasons.
-For example, in Node.js the global object does not implement {{EventTarget}}, and the relevant events are fired on the `process` object with the names `uncaughtException`, `unhandledRejection` and `rejectionHandled`, respectively.
-Such runtimes should not support the {{GlobalEventHandlers/onerror}}, {{WindowEventHandlers/onunhandledrejection}} and {{WindowEventHandlers/onrejectionhandled}} global properties, but they might implement the {{ErrorEvent}} and {{PromiseRejectionEvent}} interfaces.
+In cases where it is not possible to have the global object be an instance of {{EventTarget}} due to legacy reasons, the relevant events MUST still be fired through a suitable alternative mechanism available at the global scope. This mechanism MUST provide at least the same information that is provided by the relevant event interfaces if the global object were to be an {{EventTarget}}. Such runtimes MUST NOT support the {{GlobalEventHandlers/onerror}}, {{WindowEventHandlers/onunhandledrejection}} and {{WindowEventHandlers/onrejectionhandled}} global properties. Such runtimes NEED NOT implement the {{ErrorEvent}} and {{PromiseRejectionEvent}} interfaces.
 
-Requirements for navigator.userAgent {#navigator-useragent-requirements}
+Note: For example, in Node.js the global object does not implement {{EventTarget}}, and the relevant events are fired on the `globalThis.process` object with the names `uncaughtException`, `unhandledRejection` and `rejectionHandled`, respectively.
+
+Requirements for default User-Agent value {#useragent-requirements}
 ========================================================================
 
-The `globalThis.`{{navigator}}.{{userAgent}} property is provided such that application code can reliably identify the runtime within which it is running.
-The value of the property is a string conforming to the <code class="idl"><a data-link-type="idl" href="https://datatracker.ietf.org/doc/html/rfc7231#section-5.5.3">`User-Agent`</a></code> construction in RFC 7231:
+The [=default `User-Agent` value=] is provided such that application code can reliably identify the runtime within which it is running. The value MUST be a string conforming to the <code class="idl"><a data-link-type="idl" href="https://datatracker.ietf.org/doc/html/rfc7231#section-5.5.3">`User-Agent`</a></code> construction in RFC 7231:
 
 <pre>
   User-Agent      = product *( RWS ( product / comment ) )
@@ -149,11 +148,18 @@ The value of the property is a string conforming to the <code class="idl"><a dat
   product-version = token
 </pre>
 
-While runtimes that implement `globalThis.`{{navigator}}.{{userAgent}} MUST provide a value that is conformant with the structure defined by RFC 7231, the value SHOULD be treated as a single, complete, opaque, unstructured value. It is RECOMMENDED that the value be limited to a single `product` token excluding the optional `product-version`. For instance, `navigator.userAgent = 'MyRuntime'`. The value SHOULD NOT include any `comment` components.
+The [=default `User-Agent` value=] SHOULD be treated as a single, complete, opaque, unstructured value. It is RECOMMENDED that the value be limited to a single `product` token excluding the optional `product-version`. The value SHOULD NOT include any `comment` components.
+
+Note: For instance, `navigator.userAgent` could be set to `'MyRuntime'`.
 
 Extensions {#extensions}
 ========================
 
-Runtime-specific extensions to any Web Platform API MAY be implemented by conforming runtimes. Such extensions MUST be defined so that their use neither contradicts nor causes the non-conformance of normative functionality of any Web Platform API.
+Runtime-specific extensions to any Web Platform API MAY be implemented by conforming runtimes. Such extensions MUST be defined so that their use neither contradicts, nor causes the non-conformance of, normative functionality of any Web Platform API.
 
-Application use of such extensions must be carefully considered, as doing so reduces interoperability and portability of code across runtimes.
+It is important to carefully consider use of such extensions, as it reduces interoperability and portability of code across runtimes.
+
+This specification does not prohibit implementing additional Web Platform APIs beyond those listed here.
+
+Note: For example, the {{Performance}} API could be extended with additional methods or properties beyond those defined in the [[HR-TIME]] specifications, such as those defined in the [[PERFORMANCE-TIMELINE]] or [[USER-TIMING]] specifications.
+
