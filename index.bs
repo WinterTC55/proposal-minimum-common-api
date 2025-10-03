@@ -107,18 +107,13 @@ All of the following methods and properties MUST be exposed on the global object
 * `globalThis.`{{crypto}} [[!WEBCRYPTO]]
 * `globalThis.`{{fetch()}} [[!FETCH]]
 * `globalThis.`{{navigator}}.{{userAgent}} [[!HTML]]
-* `globalThis.onerror` (on {{GlobalEventHandlers/onerror|Window}} and {{WorkerGlobalScope/onerror|WorkerGlobalScope}}) [[!HTML]]
-* `globalThis.onunhandledrejection` (on {{WindowEventHandlers/onunhandledrejection|Window}} and {{WorkerGlobalScope/onunhandledrejection|WorkerGlobalScope}}) [[!HTML]]
-* `globalThis.onrejectionhandled` (on {{WindowEventHandlers/onrejectionhandled|Window}} and {{WorkerGlobalScope/onrejectionhandled|WorkerGlobalScope}}) [[!HTML]]
+* `globalThis.`{{GlobalEventHandlers/onerror}} [[!HTML]]
+* `globalThis.`{{WindowEventHandlers/onunhandledrejection}} [[!HTML]]
+* `globalThis.`{{WindowEventHandlers/onrejectionhandled}} [[!HTML]]
 * `globalThis.`{{performance}} [[!HR-TIME]]
 * `globalThis.`{{queueMicrotask()}} [[!HTML]]
 * `globalThis.`{{reportError()}} [[!HTML]]
-* `globalThis.`self (on {{Window/self|Window}} and {{WorkerGlobalScope/self|WorkerGlobalScope}}) [[!HTML]]
-
-    Issue: When the <a href="https://github.com/whatwg/html/pull/9893">ShadowRealm integration PR</a>
-    is merged into the HTML spec,
-    `self` will also need to be exposed on `ShadowRealmGlobalScope`.
-
+* `globalThis.`{{Window/self}} [[!HTML]]
 * `globalThis.`{{setTimeout()}} [[!HTML]]
 * `globalThis.`{{setInterval()}} [[!HTML]]
 * `globalThis.`{{structuredClone()}} [[!HTML]]
@@ -128,6 +123,11 @@ All of the following methods and properties MUST be exposed on the global object
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/instantiateStreaming()}} [[!WASM-WEB-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/JSTag}} [[!WASM-JS-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/validate()}} [[!WASM-JS-API-2]]
+
+Web-interoperable runtimes that support workers MUST also expose {{WorkerGlobalScope/onerror}},
+{{WorkerGlobalScope/onunhandledrejection}}, {{WorkerGlobalScope/onrejectionhandled}} and
+{{WorkerGlobalScope/self}} on the worker's `globalThis`,
+unless otherwise specified in this specification. [[!HTML]]
 
 The Global Scope {#global-scope}
 ================================
