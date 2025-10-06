@@ -21,12 +21,12 @@ There is a wide base of JavaScript runtime environments being used beyond web br
 
 But since code running in web browsers makes up the vast majority of JavaScript code, this is helped along if such runtimes support the same APIs as web browsers. So, unsurprisingly, more and more runtime environments have started supporting web platform APIs. However, the increase in such environments, as well as the different choices of web platform APIs, resulted in poor interoperability across such environments.
 
-As such, this Ecma Standard defines the Minimum Common Web API specification, which lists a curated minimum subset of web platform APIs for server-side and edge runtimes to implement if they aim to be web-interoperable. This is the first edition of the standard, corresponding to the 2026 snapshot, and an additional snapshot will be published every year.
+As such, this Ecma Standard defines the Minimum Common Web API specification, which lists a curated minimum subset of web platform APIs for server-side and edge runtimes to implement if they aim to be web-interoperable. This is the first edition of the standard, corresponding to the 2025 snapshot, and an additional snapshot will be published every year.
 
 Scope {#scope}
 ==============
 
-This Standard defines the 2026 snapshot of the Minimum Common Web Platform API, a curated subset of APIs defined by web platform standards from W3C and WHATWG, which is intended to define a minimum set of capabilities common to Browser and Non-Browser JavaScript-based runtime environments.
+This Standard defines the 2025 snapshot of the Minimum Common Web Platform API, a curated subset of APIs defined by web platform standards from W3C and WHATWG, which is intended to define a minimum set of capabilities common to Browser and Non-Browser JavaScript-based runtime environments.
 
 Conformance {#conformance}
 ==========================
