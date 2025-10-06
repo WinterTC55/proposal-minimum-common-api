@@ -39,11 +39,6 @@ This specification does not prohibit implementing additional Web Platform APIs b
 
 Note: For example, the {{Performance}} API could be extended with additional methods or properties beyond those defined in the [[HR-TIME]] specifications, such as those defined in the [[PERFORMANCE-TIMELINE]] or [[USER-TIMING]] specifications.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
-"OPTIONAL" in this document are to be interpreted as described in
-[[!RFC2119]].
-
 Normative references {#TODO}
 ============================
 
