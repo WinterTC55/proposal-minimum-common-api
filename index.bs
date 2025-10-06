@@ -64,9 +64,9 @@ While this term is intentionally broad to also encompass Web Browsers, the prima
 Common API Index {#api-index}
 =========================
 
-All <a>Web-interoperable Runtimes</a> conforming to this specification MUST implement each of the following Web Platform APIs. These SHOULD be implemented in accordance with their normative requirements except where modified here. Where any conforming runtime environment chooses (either by necessity or otherwise) to diverge from a normative requirement of the specification, clear explanations of such divergence MUST be made clearly and readily available in the documentation.
+All <a>Web-interoperable Runtimes</a> conforming to this specification shall implement each of the following Web Platform APIs. These should be implemented in accordance with their normative requirements except where modified here. Where any conforming runtime environment chooses (either by necessity or otherwise) to diverge from a normative requirement of the specification, clear explanations of such divergence shall be made clearly and readily available in the documentation.
 
-All of the following interfaces MUST be exposed on the global object accessible through `globalThis`, unless otherwise specified in this specification:
+All of the following interfaces shall be exposed on the global object accessible through `globalThis`, unless otherwise specified in this specification:
 
 * {{AbortController}} [[!DOM]]
 * {{AbortSignal}} [[!DOM]]
@@ -122,7 +122,7 @@ All of the following interfaces MUST be exposed on the global object accessible 
 * {{WritableStreamDefaultController}} [[!STREAMS]]
 * {{WritableStreamDefaultWriter}} [[!STREAMS]]
 
-All of the following methods and properties MUST be exposed on the global object accessible through `globalThis`, unless otherwise specified in this specification:
+All of the following methods and properties shall be exposed on the global object accessible through `globalThis`, unless otherwise specified in this specification:
 
 * {{globalThis}} [[!ECMASCRIPT]]
 * `globalThis.`{{atob()}} [[!HTML]]
@@ -150,7 +150,7 @@ All of the following methods and properties MUST be exposed on the global object
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/JSTag}} [[!WASM-JS-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/validate()}} [[!WASM-JS-API-2]]
 
-Web-interoperable runtimes that support workers MUST also expose {{WorkerGlobalScope/onerror}},
+Web-interoperable runtimes that support workers shall also expose {{WorkerGlobalScope/onerror}},
 {{WorkerGlobalScope/onunhandledrejection}}, {{WorkerGlobalScope/onrejectionhandled}} and
 {{WorkerGlobalScope/self}} on the worker's `globalThis`,
 unless otherwise specified in this specification. [[!HTML]]
@@ -158,20 +158,20 @@ unless otherwise specified in this specification. [[!HTML]]
 The Global Scope {#global-scope}
 ================================
 
-The exact type of the global scope (`globalThis`) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like {{Window}}, {{WorkerGlobalScope}}, and so forth. To simplify conformance, all interfaces, methods, and properties defined by this specification MUST be exposed on the runtime's relevant global scope (e.g., `globalThis.crypto`, `globalThis.ReadableStream`, etc).
+The exact type of the global scope (`globalThis`) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like {{Window}}, {{WorkerGlobalScope}}, and so forth. To simplify conformance, all interfaces, methods, and properties defined by this specification shall be exposed on the runtime's relevant global scope (e.g., `globalThis.crypto`, `globalThis.ReadableStream`, etc).
 
-With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. [[!WEBIDL]] To avoid introducing breaking changes, runtimes conforming to this specification MAY choose to ignore the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
+With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. [[!WEBIDL]] To avoid introducing breaking changes, runtimes conforming to this specification may choose to ignore the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
 
-The global object on {{Window}}-like and worker environments SHOULD always be an instance of {{EventTarget}}. Web-interoperable runtimes SHOULD follow the <a>report an exception</a> algorithm, and the JavaScript <a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a> host hook, as defined in [[!HTML]]. This includes firing the {{Window/error}}, {{Window/unhandledrejection}} and {{Window/rejectionhandled}} events on the global object.
+The global object on {{Window}}-like and worker environments should always be an instance of {{EventTarget}}. Web-interoperable runtimes should follow the <a>report an exception</a> algorithm, and the JavaScript <a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a> host hook, as defined in [[!HTML]]. This includes firing the {{Window/error}}, {{Window/unhandledrejection}} and {{Window/rejectionhandled}} events on the global object.
 
-In cases where it is not possible to have the global object be an instance of {{EventTarget}} due to legacy reasons, the relevant events MUST still be fired through a suitable alternative mechanism available at the global scope. This mechanism MUST provide at least the same information that is provided by the relevant event interfaces if the global object were to be an {{EventTarget}}. Such runtimes MUST NOT support the {{GlobalEventHandlers/onerror}}, {{WindowEventHandlers/onunhandledrejection}} and {{WindowEventHandlers/onrejectionhandled}} global properties. Such runtimes are not required to implement the {{ErrorEvent}} and {{PromiseRejectionEvent}} interfaces.
+In cases where it is not possible to have the global object be an instance of {{EventTarget}} due to legacy reasons, the relevant events shall still be fired through a suitable alternative mechanism available at the global scope. This mechanism shall provide at least the same information that is provided by the relevant event interfaces if the global object were to be an {{EventTarget}}. Such runtimes shall not support the {{GlobalEventHandlers/onerror}}, {{WindowEventHandlers/onunhandledrejection}} and {{WindowEventHandlers/onrejectionhandled}} global properties. Such runtimes are not required to implement the {{ErrorEvent}} and {{PromiseRejectionEvent}} interfaces.
 
 Note: For example, in Node.js the global object does not implement {{EventTarget}}, and the relevant events are fired on the `globalThis.process` object with the names `uncaughtException`, `unhandledRejection` and `rejectionHandled`, respectively.
 
 Requirements for default User-Agent value {#useragent-requirements}
 ========================================================================
 
-The [=default `User-Agent` value=] is provided such that application code can reliably identify the runtime within which it is running. The value MUST be a string conforming to the <code class="idl"><a data-link-type="idl" href="https://datatracker.ietf.org/doc/html/rfc7231#section-5.5.3">`User-Agent`</a></code> construction in [[!RFC7231]]:
+The [=default `User-Agent` value=] is provided such that application code can reliably identify the runtime within which it is running. The value shall be a string conforming to the <code class="idl"><a data-link-type="idl" href="https://datatracker.ietf.org/doc/html/rfc7231#section-5.5.3">`User-Agent`</a></code> construction in [[!RFC7231]]:
 
 <pre>
   User-Agent      = product *( RWS ( product / comment ) )
@@ -179,6 +179,6 @@ The [=default `User-Agent` value=] is provided such that application code can re
   product-version = token
 </pre>
 
-The [=default `User-Agent` value=] SHOULD be treated as a single, complete, opaque, unstructured value. It is RECOMMENDED that the value be limited to a single `product` token excluding the optional `product-version`. The value SHOULD NOT include any `comment` components.
+The [=default `User-Agent` value=] should be treated as a single, complete, opaque, unstructured value. It is recommended that the value be limited to a single `product` token excluding the optional `product-version`. The value should not include any `comment` components.
 
 Note: For instance, `navigator.userAgent` could be set to `'MyRuntime'`.
