@@ -15,32 +15,58 @@ spec:html; type:attribute; for:Window; text:navigator
 spec:fetch; type:method; text:fetch()
 </pre>
 
-Introduction {#intro}
-=====================
+<h2 class="no-num" id="intro">Introduction</h2>
 
-*This section is non-normative.*
+There is a wide base of JavaScript runtime environments being used beyond web browsers, specifically in web server and edge platforms. An important part of the reason for this is the fact that JavaScript can be used both in the server and in the client side, which reduces the specialization needed to work in different parts of a single codebase, and allows reusing code across the server and client side.
 
-The Minimum Common Web Platform API is a curated subset of standardized Web Platform APIs intended to define a minimum set of capabilities common to Browser and Non-Browser JavaScript-based runtime environments.
+But since code running in web browsers makes up the vast majority of JavaScript code, this is helped along if such runtimes support the same APIs as web browsers. So, unsurprisingly, more and more runtime environments have started supporting web platform APIs. However, the increase in such environments, as well as the different choices of web platform APIs, resulted in poor interoperability across such environments.
 
-Terminology {#terminology}
+As such, this Ecma Standard defines the Minimum Common Web API specification, which lists a curated minimum subset of web platform APIs for server-side and edge runtimes to implement if they aim to be web-interoperable. This is the first edition of the standard, corresponding to the 2025 snapshot, and an additional snapshot will be published every year.
+
+Scope {#scope}
+==============
+
+This Standard defines the 2025 snapshot of the Minimum Common Web Platform API, a curated subset of APIs defined by web platform standards from W3C and WHATWG, which is intended to define a minimum set of capabilities common to Browser and Non-Browser JavaScript-based runtime environments.
+
+Conformance {#conformance}
 ==========================
+
+A conforming implementation of the Minimum Common Web Platform API shall conform to ECMA-262, and additionally shall provide the interfaces and properties listed in this specification, according to their definition in the corresponding W3C or WHATWG standard.
+
+Runtime-specific extensions to any Web Platform API may be implemented by conforming runtimes. Such extensions shall be defined so that their use neither contradicts, nor causes the non-conformance of, normative functionality of any Web Platform API. It is important to carefully consider use of such extensions, as it reduces interoperability and portability of code across runtimes.
+
+This specification does not prohibit implementing additional Web Platform APIs beyond those listed here.
+
+Note: For example, the {{Performance}} API could be extended with additional methods or properties beyond those defined in the [[HR-TIME]] specifications, such as those defined in the [[PERFORMANCE-TIMELINE]] or [[USER-TIMING]] specifications.
+
+Normative references {#TODO}
+============================
+
+The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.
+
+<div data-fill-with="references"></div>
+
+Terms and definitions {#terminology}
+====================================
+
+<dfn>Web Platform</dfn> {#term-web-platform}
+--------------------------------------------
 
 The Web Platform is the combination of technology standards defined by organizations such as the W3C, the WHATWG, and others as implemented by Web Browsers.
 
-A <dfn>Web-interoperable Runtime</dfn> is any ECMAScript-based application runtime environment that implements the subset of Web Platform APIs outlined in this specification.
-While this term is intentionally broad to also encompass Web Browsers, the primary focus here is on outlining expectations for non-browser runtimes.
+<dfn>Web-interoperable Runtime</dfn> {#term-web-interoperable-runtime}
+----------------------------------------------------------------------
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
-"OPTIONAL" in this document are to be interpreted as described in
-[[!RFC2119]].
+Any ECMAScript-based application runtime environment that implements the subset of Web Platform APIs outlined in this specification.
+
+While this term is intentionally broad to also encompass Web Browsers, the primary focus here is on outlining expectations for non-browser runtimes.
 
 Common API Index {#api-index}
 =========================
 
-All <a>Web-interoperable Runtimes</a> conforming to this specification MUST implement each of the following Web Platform APIs. These SHOULD be implemented in accordance with their normative requirements except where modified here. Where any conforming runtime environment chooses (either by necessity or otherwise) to diverge from a normative requirement of the specification, clear explanations of such divergence MUST be made clearly and readily available in the documentation.
+All <a>Web-interoperable Runtimes</a> conforming to this specification shall implement each of the following Web Platform APIs. These should be implemented in accordance with their normative requirements except where modified here. Where any conforming runtime environment chooses (either by necessity or otherwise) to diverge from a normative requirement of the specification, clear explanations of such divergence shall be made clearly and readily available in the documentation.
 
-All of the following interfaces MUST be exposed on the global object accessible through `globalThis`, unless otherwise specified in this specification:
+All of the following interfaces shall be exposed on the global object accessible through `globalThis`, unless otherwise specified in this specification:
 
 * {{AbortController}} [[!DOM]]
 * {{AbortSignal}} [[!DOM]]
@@ -96,7 +122,7 @@ All of the following interfaces MUST be exposed on the global object accessible 
 * {{WritableStreamDefaultController}} [[!STREAMS]]
 * {{WritableStreamDefaultWriter}} [[!STREAMS]]
 
-All of the following methods and properties MUST be exposed on the global object accessible through `globalThis`, unless otherwise specified in this specification:
+All of the following methods and properties shall be exposed on the global object accessible through `globalThis`, unless otherwise specified in this specification:
 
 * {{globalThis}} [[!ECMASCRIPT]]
 * `globalThis.`{{atob()}} [[!HTML]]
@@ -124,7 +150,7 @@ All of the following methods and properties MUST be exposed on the global object
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/JSTag}} [[!WASM-JS-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/validate()}} [[!WASM-JS-API-2]]
 
-Web-interoperable runtimes that support workers MUST also expose {{WorkerGlobalScope/onerror}},
+Web-interoperable runtimes that support workers shall also expose {{WorkerGlobalScope/onerror}},
 {{WorkerGlobalScope/onunhandledrejection}}, {{WorkerGlobalScope/onrejectionhandled}} and
 {{WorkerGlobalScope/self}} on the worker's `globalThis`,
 unless otherwise specified in this specification. [[!HTML]]
@@ -132,20 +158,20 @@ unless otherwise specified in this specification. [[!HTML]]
 The Global Scope {#global-scope}
 ================================
 
-The exact type of the global scope (`globalThis`) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like {{Window}}, {{WorkerGlobalScope}}, and so forth. To simplify conformance, all interfaces, methods, and properties defined by this specification MUST be exposed on the runtime's relevant global scope (e.g., `globalThis.crypto`, `globalThis.ReadableStream`, etc).
+The exact type of the global scope (`globalThis`) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like {{Window}}, {{WorkerGlobalScope}}, and so forth. To simplify conformance, all interfaces, methods, and properties defined by this specification shall be exposed on the runtime's relevant global scope (e.g., `globalThis.crypto`, `globalThis.ReadableStream`, etc).
 
-With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. [[!WEBIDL]] To avoid introducing breaking changes, runtimes conforming to this specification MAY choose to ignore the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
+With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. [[!WEBIDL]] To avoid introducing breaking changes, runtimes conforming to this specification may choose to ignore the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
 
-The global object on {{Window}}-like and worker environments SHOULD always be an instance of {{EventTarget}}. Web-interoperable runtimes SHOULD follow the <a>report an exception</a> algorithm, and the JavaScript <a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a> host hook, as defined in [[!HTML]]. This includes firing the {{Window/error}}, {{Window/unhandledrejection}} and {{Window/rejectionhandled}} events on the global object.
+The global object on {{Window}}-like and worker environments should always be an instance of {{EventTarget}}. Web-interoperable runtimes should follow the <a>report an exception</a> algorithm, and the JavaScript <a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a> host hook, as defined in [[!HTML]]. This includes firing the {{Window/error}}, {{Window/unhandledrejection}} and {{Window/rejectionhandled}} events on the global object.
 
-In cases where it is not possible to have the global object be an instance of {{EventTarget}} due to legacy reasons, the relevant events MUST still be fired through a suitable alternative mechanism available at the global scope. This mechanism MUST provide at least the same information that is provided by the relevant event interfaces if the global object were to be an {{EventTarget}}. Such runtimes MUST NOT support the {{GlobalEventHandlers/onerror}}, {{WindowEventHandlers/onunhandledrejection}} and {{WindowEventHandlers/onrejectionhandled}} global properties. Such runtimes are not required to implement the {{ErrorEvent}} and {{PromiseRejectionEvent}} interfaces.
+In cases where it is not possible to have the global object be an instance of {{EventTarget}} due to legacy reasons, the relevant events shall still be fired through a suitable alternative mechanism available at the global scope. This mechanism shall provide at least the same information that is provided by the relevant event interfaces if the global object were to be an {{EventTarget}}. Such runtimes shall not support the {{GlobalEventHandlers/onerror}}, {{WindowEventHandlers/onunhandledrejection}} and {{WindowEventHandlers/onrejectionhandled}} global properties. Such runtimes are not required to implement the {{ErrorEvent}} and {{PromiseRejectionEvent}} interfaces.
 
 Note: For example, in Node.js the global object does not implement {{EventTarget}}, and the relevant events are fired on the `globalThis.process` object with the names `uncaughtException`, `unhandledRejection` and `rejectionHandled`, respectively.
 
 Requirements for default User-Agent value {#useragent-requirements}
 ========================================================================
 
-The [=default `User-Agent` value=] is provided such that application code can reliably identify the runtime within which it is running. The value MUST be a string conforming to the <code class="idl"><a data-link-type="idl" href="https://datatracker.ietf.org/doc/html/rfc7231#section-5.5.3">`User-Agent`</a></code> construction in [[!RFC7231]]:
+The [=default `User-Agent` value=] is provided such that application code can reliably identify the runtime within which it is running. The value shall be a string conforming to the <code class="idl"><a data-link-type="idl" href="https://datatracker.ietf.org/doc/html/rfc7231#section-5.5.3">`User-Agent`</a></code> construction in [[!RFC7231]]:
 
 <pre>
   User-Agent      = product *( RWS ( product / comment ) )
@@ -153,18 +179,6 @@ The [=default `User-Agent` value=] is provided such that application code can re
   product-version = token
 </pre>
 
-The [=default `User-Agent` value=] SHOULD be treated as a single, complete, opaque, unstructured value. It is RECOMMENDED that the value be limited to a single `product` token excluding the optional `product-version`. The value SHOULD NOT include any `comment` components.
+The [=default `User-Agent` value=] should be treated as a single, complete, opaque, unstructured value. It is recommended that the value be limited to a single `product` token excluding the optional `product-version`. The value should not include any `comment` components.
 
 Note: For instance, `navigator.userAgent` could be set to `'MyRuntime'`.
-
-Extensions {#extensions}
-========================
-
-Runtime-specific extensions to any Web Platform API MAY be implemented by conforming runtimes. Such extensions MUST be defined so that their use neither contradicts, nor causes the non-conformance of, normative functionality of any Web Platform API.
-
-It is important to carefully consider use of such extensions, as it reduces interoperability and portability of code across runtimes.
-
-This specification does not prohibit implementing additional Web Platform APIs beyond those listed here.
-
-Note: For example, the {{Performance}} API could be extended with additional methods or properties beyond those defined in the [[HR-TIME]] specifications, such as those defined in the [[PERFORMANCE-TIMELINE]] or [[USER-TIMING]] specifications.
-
