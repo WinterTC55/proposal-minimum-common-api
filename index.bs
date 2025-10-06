@@ -15,25 +15,56 @@ spec:html; type:attribute; for:Window; text:navigator
 spec:fetch; type:method; text:fetch()
 </pre>
 
-Introduction {#intro}
-=====================
+<h2 class="no-num" id="intro">Introduction</h2>
 
-*This section is non-normative.*
+There is a wide base of JavaScript runtime environments being used beyond web browsers, specifically in web server and edge platforms. An important part of the reason for this is the fact that JavaScript can be used both in the server and in the client side, which reduces the specialization needed to work in different parts of a single codebase, and allows reusing code across the server and client side.
 
-The Minimum Common Web Platform API is a curated subset of standardized Web Platform APIs intended to define a minimum set of capabilities common to Browser and Non-Browser JavaScript-based runtime environments.
+But since code running in web browsers makes up the vast majority of JavaScript code, this is helped along if such runtimes support the same APIs as web browsers. So, unsurprisingly, more and more runtime environments have started supporting web platform APIs. However, the increase in such environments, as well as the different choices of web platform APIs, resulted in poor interoperability across such environments.
 
-Terminology {#terminology}
+As such, this Ecma Standard defines the Minimum Common Web API specification, which lists a curated minimum subset of web platform APIs for server-side and edge runtimes to implement if they aim to be web-interoperable. This is the first edition of the standard, corresponding to the 2026 snapshot, and an additional snapshot will be published every year.
+
+Scope {#scope}
+==============
+
+This Standard defines the 2026 snapshot of the Minimum Common Web Platform API, a curated subset of APIs defined by web platform standards from W3C and WHATWG, which is intended to define a minimum set of capabilities common to Browser and Non-Browser JavaScript-based runtime environments.
+
+Conformance {#conformance}
 ==========================
 
-The Web Platform is the combination of technology standards defined by organizations such as the W3C, the WHATWG, and others as implemented by Web Browsers.
+A conforming implementation of the Minimum Common Web Platform API MUST conform to ECMA-262, and additionally MUST provide the interfaces and properties listed in this specification, according to their definition in the corresponding W3C or WHATWG standard.
 
-A <dfn>Web-interoperable Runtime</dfn> is any ECMAScript-based application runtime environment that implements the subset of Web Platform APIs outlined in this specification.
-While this term is intentionally broad to also encompass Web Browsers, the primary focus here is on outlining expectations for non-browser runtimes.
+Runtime-specific extensions to any Web Platform API MAY be implemented by conforming runtimes. Such extensions MUST be defined so that their use neither contradicts, nor causes the non-conformance of, normative functionality of any Web Platform API. It is important to carefully consider use of such extensions, as it reduces interoperability and portability of code across runtimes.
+
+This specification does not prohibit implementing additional Web Platform APIs beyond those listed here.
+
+Note: For example, the {{Performance}} API could be extended with additional methods or properties beyond those defined in the [[HR-TIME]] specifications, such as those defined in the [[PERFORMANCE-TIMELINE]] or [[USER-TIMING]] specifications.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 "OPTIONAL" in this document are to be interpreted as described in
 [[!RFC2119]].
+
+Normative references {#TODO}
+============================
+
+The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.
+
+<div data-fill-with="references"></div>
+
+Terms and definitions {#terminology}
+====================================
+
+<dfn>Web Platform</dfn> {#term-web-platform}
+--------------------------------------------
+
+The Web Platform is the combination of technology standards defined by organizations such as the W3C, the WHATWG, and others as implemented by Web Browsers.
+
+<dfn>Web-interoperable Runtime</dfn> {#term-web-interoperable-runtime}
+----------------------------------------------------------------------
+
+Any ECMAScript-based application runtime environment that implements the subset of Web Platform APIs outlined in this specification.
+
+While this term is intentionally broad to also encompass Web Browsers, the primary focus here is on outlining expectations for non-browser runtimes.
 
 Common API Index {#api-index}
 =========================
@@ -156,15 +187,3 @@ The [=default `User-Agent` value=] is provided such that application code can re
 The [=default `User-Agent` value=] SHOULD be treated as a single, complete, opaque, unstructured value. It is RECOMMENDED that the value be limited to a single `product` token excluding the optional `product-version`. The value SHOULD NOT include any `comment` components.
 
 Note: For instance, `navigator.userAgent` could be set to `'MyRuntime'`.
-
-Extensions {#extensions}
-========================
-
-Runtime-specific extensions to any Web Platform API MAY be implemented by conforming runtimes. Such extensions MUST be defined so that their use neither contradicts, nor causes the non-conformance of, normative functionality of any Web Platform API.
-
-It is important to carefully consider use of such extensions, as it reduces interoperability and portability of code across runtimes.
-
-This specification does not prohibit implementing additional Web Platform APIs beyond those listed here.
-
-Note: For example, the {{Performance}} API could be extended with additional methods or properties beyond those defined in the [[HR-TIME]] specifications, such as those defined in the [[PERFORMANCE-TIMELINE]] or [[USER-TIMING]] specifications.
-
