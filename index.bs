@@ -31,7 +31,7 @@ This Standard defines the 2025 snapshot of the Minimum Common Web Platform API, 
 Conformance {#conformance}
 ==========================
 
-A conforming implementation of the Minimum Common Web Platform API MUST conform to ECMA-262, and additionally MUST provide the interfaces and properties listed in this specification, according to their definition in the corresponding W3C or WHATWG standard.
+A conforming implementation of the Minimum Common Web Platform API shall conform to ECMA-262, and additionally shall provide the interfaces and properties listed in this specification, according to their definition in the corresponding W3C or WHATWG standard.
 
 Runtime-specific extensions to any Web Platform API MAY be implemented by conforming runtimes. Such extensions MUST be defined so that their use neither contradicts, nor causes the non-conformance of, normative functionality of any Web Platform API. It is important to carefully consider use of such extensions, as it reduces interoperability and portability of code across runtimes.
 
