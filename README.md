@@ -1,15 +1,9 @@
-# Minimum Common API
+# Minimum common web API
 
-The idea behind the Minimum Common API is to document the minimal collection of Web Platform APIs that ought to be implemented by Web-interoperable runtimes.
+This repository contains the source for the current draft of the Minimum common web API specification.
 
-## How are the APIs selected
+This specification aims to define a minimal collection of web APIs that should be implemented by server side runtimes that aim to be web-interoperable.
 
-By looking at the APIs that are already implemented and supported in common across Node.js, Deno, and Cloudflare Workers. If there were at least two implementations among those -- either already supported or in progress -- then it was added to the list.
+This source is processed to obtain a human-readable version, which you can view [here](https://min-common-api.proposal.wintertc.org).
 
-## Is the list finalized?
-
-Oh heavens no. The initial draft is just an initial draft. A first stab at a collection we need to work through and finalize.
-
-## How do we decide what makes the final list?
-
-I don't know yet. That's something we still need to work through.
+The human-readable version of this specification is generated using [Bikeshed](https://speced.github.io/bikeshed).
