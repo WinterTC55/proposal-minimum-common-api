@@ -83,14 +83,14 @@ The Web Platform is the combination of technology standards defined by organizat
 <dfn>Web-interoperable Runtime</dfn> {#term-web-interoperable-runtime}
 ----------------------------------------------------------------------
 
-Any ECMAScript-based application runtime environment that implements the subset of Web Platform APIs outlined in this Standard.
+Any ECMAScript-based runtime environment that implements this Standard. Web Browsers provide a Web-interoperable Runtime.
 
-While this term is intentionally broad to also encompass Web Browsers, the primary focus here is on outlining expectations for non-browser runtimes.
+The term "Web-interoperable Runtime" is intentionally broad. The primary focus of this Standard is web server runtimes.
 
 Common API Index {#api-index}
 =========================
 
-All <a>Web-interoperable Runtimes</a> conforming to this Standard shall implement each of the following <a>Web Platform</a> APIs. These should be implemented in accordance with their normative requirements except where modified here. Where any conforming runtime environment chooses (either by necessity or otherwise) to diverge from a normative requirement of the specification, clear explanations of such divergence shall be made clearly and readily available in the documentation.
+All <a>Web-interoperable Runtimes</a> conforming to this Standard shall implement each of the following <a>Web Platform</a> APIs. These should be implemented in accordance with their normative requirements except where modified here. Where any runtime environment must diverge from a normative requirement for technical or structural reasons, clear documentation shall be provided. Documentation shall include both explanation and impact of deviation.
 
 All of the following interfaces shall be exposed on the global object accessible through `globalThis`, unless otherwise specified in this Standard:
 
@@ -176,7 +176,7 @@ All of the following methods and properties shall be exposed on the global objec
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/JSTag}} [[!WASM-JS-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/validate()}} [[!WASM-JS-API-2]]
 
-Web-interoperable runtimes that support workers shall also expose {{WorkerGlobalScope/onerror}},
+If web-interoperable runtimes support workers, they shall also expose {{WorkerGlobalScope/onerror}},
 {{WorkerGlobalScope/onunhandledrejection}}, {{WorkerGlobalScope/onrejectionhandled}} and
 {{WorkerGlobalScope/self}} on the worker's `globalThis`,
 unless otherwise specified in this Standard. [[!HTML]]
@@ -186,7 +186,7 @@ The Global Scope {#global-scope}
 
 The exact type of the global scope (`globalThis`) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like {{Window}}, {{WorkerGlobalScope}}, and so forth. To simplify conformance, all interfaces, methods, and properties defined by this Standard shall be exposed on the runtime's relevant global scope (e.g., `globalThis.crypto`, `globalThis.ReadableStream`, etc).
 
-With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. [[!WEBIDL]] To avoid introducing breaking changes, runtimes conforming to this Standard may choose to ignore the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
+With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. [[!WEBIDL]] To avoid introducing breaking changes, runtimes conforming to this Standard may omit the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
 
 The global object on {{Window}}-like and worker environments should always be an instance of {{EventTarget}}. Web-interoperable runtimes should follow the <a>report an exception</a> algorithm, and the JavaScript <a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a> host hook, as defined in [[!HTML]]. This includes firing the {{Window/error}}, {{Window/unhandledrejection}} and {{Window/rejectionhandled}} events on the global object.
 
@@ -205,6 +205,6 @@ The [=default `User-Agent` value=] is provided such that application code can re
   product-version = token
 </pre>
 
-The [=default `User-Agent` value=] should be treated as a single, complete, opaque, unstructured value. It is recommended that the value be limited to a single `product` token excluding the optional `product-version`. The value should not include any `comment` components.
+The [=default `User-Agent` value=] should be treated by application code as a single, complete, opaque, unstructured value. It is recommended that the value be limited to a single `product` token excluding the optional `product-version`. The value should not include any `comment` components.
 
 Note: For instance, `navigator.userAgent` could be set to `'MyRuntime'`.
