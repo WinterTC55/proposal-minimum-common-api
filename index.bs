@@ -25,18 +25,7 @@ As such, this Ecma Standard defines the Minimum common web API specification, wh
 
 This Ecma Standard was developed by Technical Committee 55 and was adopted by the General Assembly of December 2025.
 
-## Contributing to this specification>
-
-This version
-: [https://min-common-api.proposal.wintertc.org/](https://min-common-api.proposal.wintertc.org/)
-
-Issue Tracking
-: [GitHub](https://github.com/WinterTC55/proposal-minimum-common-api/issues/)
-
-Editor
-: [James M Snell](mailto:jsnell@cloudflare.com), [Cloudflare](https://cloudflare.com)
-
-***
+<h2 class="no-num">Copyright</h2>
 
 *ALTERNATIVE COPYRIGHT NOTICE AND COPYRIGHT LICENSE*
 
@@ -50,7 +39,7 @@ Editor
 
 *(ii) Any pre-existing intellectual property disclaimers, notices, or terms and conditions. If none exist, the Ecma alternative copyright notice should be included.*
 
-*(iii) Notice of any changes or modifications, through a copyright statement on the document such as “This document includes material copied from or derived from Minimum common web API specification.<br> Copyright © 2025 Ecma International.*
+*(iii) Notice of any changes or modifications, through a copyright statement on the document such as “This document includes material copied from or derived from Minimum common web API specification. Copyright © 2025 Ecma International.*
 
 **Disclaimers**
 
@@ -59,8 +48,6 @@ THIS WORK IS PROVIDED “AS IS,” AND COPYRIGHT HOLDERS MAKE NO REPRESENTATIONS
 COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE DOCUMENT.
 
 The name and trademarks of copyright holders may NOT be used in advertising or publicity pertaining to the work without specific, written prior permission. Title to copyright in this work will at all times remain with copyright holders.
-
-<!-- insert title here -->
 
 Scope {#scope}
 ==========================
