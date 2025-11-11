@@ -83,7 +83,7 @@ The Web Platform is the combination of technology standards defined by organizat
 <dfn>Web-interoperable Runtime</dfn> {#term-web-interoperable-runtime}
 ----------------------------------------------------------------------
 
-Any ECMAScript-based runtime environment that implements this Standard. Web Browsers provide a Web-interoperable Runtime.
+Any ECMAScript-based runtime environment that implements this Standard. Web Browsers are Web-interoperable Runtimes.
 
 The term "Web-interoperable Runtime" is intentionally broad. The primary focus of this Standard is web server runtimes.
 
@@ -176,7 +176,7 @@ All of the following methods and properties shall be exposed on the global objec
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/JSTag}} [[!WASM-JS-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/validate()}} [[!WASM-JS-API-2]]
 
-If web-interoperable runtimes support workers, they shall also expose {{WorkerGlobalScope/onerror}},
+If a web-interoperable runtime supports workers, it shall also expose {{WorkerGlobalScope/onerror}},
 {{WorkerGlobalScope/onunhandledrejection}}, {{WorkerGlobalScope/onrejectionhandled}} and
 {{WorkerGlobalScope/self}} on the worker's `globalThis`,
 unless otherwise specified in this Standard. [[!HTML]]
