@@ -78,13 +78,14 @@ Terms and definitions {#terminology}
 <dfn>Web Platform</dfn> {#term-web-platform}
 --------------------------------------------
 
-The Web Platform is the combination of technology standards defined by organizations such as the W3C, the WHATWG, and others as implemented by Web Browsers.
+the combination of technology standards defined by organizations such as the W3C, the WHATWG, and others as implemented by Web Browsers
 
 <dfn>Web-interoperable Runtime</dfn> {#term-web-interoperable-runtime}
 ----------------------------------------------------------------------
 
-Any ECMAScript-based runtime environment that implements this Standard. Web Browsers are Web-interoperable Runtimes.
+ECMAScript-based runtime environment that implements this Standard
 
+Note: Web Browsers are Web-interoperable Runtimes.  
 The term "Web-interoperable Runtime" is intentionally broad. The primary focus of this Standard is web server runtimes.
 
 Common API Index {#api-index}
