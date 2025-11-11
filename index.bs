@@ -59,9 +59,9 @@ Conformance {#conformance}
 
 A conforming implementation of the Minimum Common Web Platform API shall conform to ECMA-262, and additionally shall provide the interfaces and properties listed in this Standard, according to their definition in the corresponding W3C or WHATWG standard.
 
-Runtime-specific extensions to any Web Platform API may be implemented by conforming runtimes. Such extensions shall be defined so that their use neither contradicts, nor causes the non-conformance of, normative functionality of any Web Platform API. It is important to carefully consider use of such extensions, as it reduces interoperability and portability of code across runtimes.
+Runtime-specific extensions to any Web Platform API may be implemented by conforming runtimes. Such extensions shall be defined so that their use neither contradicts, nor causes the non-conformance of, normative functionality of any Web Platform API. Extending API surface, even without modifying existing API behaviours, should be avoided as it I can reduce interoperability and portability of code across runtimes.
 
-This Standard does not prohibit implementing additional Web Platform APIs beyond those listed here.
+Runtimes may implement Web Platform APIs beyond those listed in this Standard.
 
 Note: For example, the {{Performance}} API could be extended with additional methods or properties beyond those defined in the [[HR-TIME]] specifications, such as those defined in the [[PERFORMANCE-TIMELINE]] or [[USER-TIMING]] specifications.
 
