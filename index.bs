@@ -75,6 +75,8 @@ The following documents are referred to in the text in such a way that some or a
 Terms and definitions {#terminology}
 ====================================
 
+For the purposes of this document, the terms and definitions given in  ECMA-262, Compression Standard, Console Standard, DOM Standard, Encoding Standard, Fetch Standard, File API, High-Resolution Time, HTML Standard, Streams Standard, URL Standard, URL Pattern Standard, WebAssembly JavaScript Interface, WebAssembly Web API, W3C Web Cryptography Level 2, and the following apply. Externally-defined terms are mapped to source in Annex A.
+
 <dfn>Web Platform</dfn> {#term-web-platform}
 --------------------------------------------
 
