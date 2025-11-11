@@ -85,7 +85,7 @@ the combination of technology standards defined by organizations such as the W3C
 
 ECMAScript-based runtime environment that implements this Standard
 
-Note: Web Browsers are Web-interoperable Runtimes.  
+Note: Web Browsers are Web-interoperable Runtimes.<br>
 The term "Web-interoperable Runtime" is intentionally broad. The primary focus of this Standard is web server runtimes.
 
 Common API Index {#api-index}
