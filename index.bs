@@ -21,7 +21,7 @@ There is a wide base of ECMAScript runtime environments being used beyond web br
 
 Since code running in web browsers makes up the vast majority of ECMAScript code, runtimes are incentivised to support the same APIs as web browsers. However without a specification of which web platform APIs to be implemented, the resulting landscape provides poor interoperability across such environments.
 
-As such, this Ecma Standard defines the Minimum common web API specification, which lists a curated minimum subset of web platform APIs for server-side and edge runtimes to implement if they aim to be web-interoperable. This is the first edition of the standard, corresponding to the 2025 snapshot. As the web platform (and non-web runtimes) grow and evolve, the committee will aim to publish with an annual cadence.
+As such, this Ecma Standard defines the Minimum common web API specification, which defines a subset of Web Platform APIs for server runtimes to implement for interoperability with the web. This is the first edition of the standard, corresponding to the 2025 snapshot. As the web platform and web server runtimes grow and evolve, the committee will aim to publish with an annual cadence.
 
 This Ecma Standard was developed by Technical Committee 55 and was adopted by the General Assembly of December 2025.
 
@@ -52,12 +52,12 @@ This Ecma Standard was developed by Technical Committee 55 and was adopted by th
 Scope {#scope}
 ==========================
 
-This Standard defines the 2025 snapshot of the Minimum common web API, a curated subset of APIs defined by web platform standards from W3C and WHATWG, which is intended to define a minimum set of capabilities common to browser and non-browser ECMAScript-based runtime environments.
+This Standard defines the 2025 snapshot of the Minimum common web API, a curated subset of APIs defined by web platform standards from W3C and WHATWG, which is intended to define a minimum set of capabilities common to browser and web server runtime environments based on ECMAScript.
 
 Conformance {#conformance}
 ==========================
 
-A conforming implementation of the Minimum Common Web Platform API shall conform to ECMA-262, and additionally shall provide the interfaces and properties listed in this Standard, according to their definition in the corresponding W3C or WHATWG standard.
+A conforming implementation of this Standard shall provide the interfaces and properties listed in this specification, according to their definition in the corresponding W3C or WHATWG standard. A conforming implementation shall also conform to ECMA-262.
 
 Runtime-specific extensions to any Web Platform API may be implemented by conforming runtimes. Such extensions shall be defined so that their use neither contradicts, nor causes the non-conformance of, normative functionality of any Web Platform API. It is important to carefully consider use of such extensions, as it reduces interoperability and portability of code across runtimes.
 
@@ -90,9 +90,11 @@ The term "Web-interoperable Runtime" is intentionally broad. The primary focus o
 Common API Index {#api-index}
 =========================
 
-All <a>Web-interoperable Runtimes</a> conforming to this Standard shall implement each of the following <a>Web Platform</a> APIs. These should be implemented in accordance with their normative requirements except where modified here. Where any runtime environment must diverge from a normative requirement for technical or structural reasons, clear documentation shall be provided. Documentation shall include both explanation and impact of deviation.
+All <a>Web-interoperable Runtimes</a> conforming to this Standard shall implement each of the following <a>Web Platform</a> APIs. These should be implemented in accordance with their normative requirements except as specified in [[#global-scope]]. Where any runtime environment must diverge from a normative requirement for technical or structural reasons, clear documentation shall be provided. Documentation shall include both explanation and impact of deviation.
 
-All of the following interfaces shall be exposed on the global object accessible through `globalThis`, unless otherwise specified in this Standard:
+Note: Since web server runtimes do not have an [=origin=] concept, they may willingly violate [[!FETCH]]'s requirement of appending an `Origin` header to network requests.
+
+All of the following interfaces shall be exposed on the global object accessible through `globalThis`:
 
 * {{AbortController}} [[!DOM]]
 * {{AbortSignal}} [[!DOM]]
@@ -148,7 +150,7 @@ All of the following interfaces shall be exposed on the global object accessible
 * {{WritableStreamDefaultController}} [[!STREAMS]]
 * {{WritableStreamDefaultWriter}} [[!STREAMS]]
 
-All of the following methods and properties shall be exposed on the global object accessible through `globalThis`, unless otherwise specified in this Standard:
+All of the following methods and properties shall be exposed on the global object accessible through `globalThis`, except as specified in [[#global-scope]]:
 
 * {{globalThis}} [[!ECMASCRIPT]]
 * `globalThis.`{{atob()}} [[!HTML]]
@@ -179,7 +181,7 @@ All of the following methods and properties shall be exposed on the global objec
 If a web-interoperable runtime supports workers, it shall also expose {{WorkerGlobalScope/onerror}},
 {{WorkerGlobalScope/onunhandledrejection}}, {{WorkerGlobalScope/onrejectionhandled}} and
 {{WorkerGlobalScope/self}} on the worker's `globalThis`,
-unless otherwise specified in this Standard. [[!HTML]]
+except as specified in [[#global-scope]]. [[!HTML]]
 
 The Global Scope {#global-scope}
 ================================
