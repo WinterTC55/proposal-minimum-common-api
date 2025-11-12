@@ -6,7 +6,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   bikeshed:
     runs-on: ubuntu-latest
 
@@ -17,10 +16,11 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: install bikeshed
         run: |
+          sudo apt-get update && apt-get install libxml2-devel libxslt-devel
           python -m pip install --upgrade pip
           pip install bikeshed
           bikeshed update
