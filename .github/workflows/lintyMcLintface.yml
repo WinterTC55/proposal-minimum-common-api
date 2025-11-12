@@ -20,7 +20,8 @@ jobs:
 
       - name: install bikeshed
         run: |
-          sudo apt-get update && apt-get install libxml2-devel libxslt-devel
+          sudo apt-get update
+          sudo apt-get install libxml2-devel libxslt-devel
           python -m pip install --upgrade pip
           pip install bikeshed
           bikeshed update
