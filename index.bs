@@ -94,7 +94,7 @@ Common API Index {#api-index}
 
 All <a>Web-interoperable Runtimes</a> conforming to this Standard shall implement each of the following <a>Web Platform</a> APIs. These should be implemented in accordance with their normative requirements except as specified in [[#global-scope]]. Where any runtime environment must diverge from a normative requirement for technical or structural reasons, clear documentation shall be provided. Documentation shall include both explanation and impact of deviation.
 
-Note: For example, since web server runtimes do not have an [=origin=] concept, they may willingly violate [[!FETCH]]'s requirement of appending an `Origin` header to network requests.
+Note: For example, since web server runtimes do not have an [=origin=] concept, they must violate [[!FETCH]]'s requirement of appending an `Origin` header to network requests.
 
 All of the following interfaces shall be exposed on the global object accessible through `globalThis`:
 
