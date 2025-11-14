@@ -54,7 +54,7 @@ Scope {#scope}
 
 This Standard defines the 2025 snapshot of the Minimum common web API, a curated subset of APIs defined by web platform standards from W3C and WHATWG, which is intended to define a minimum set of capabilities common to browser and web server runtime environments based on ECMAScript.
 
-The intended audience for this standard is for web server runtime environments that want to be interoperable with the web platform. However, the set of API it describes may be implemented by any ECMAScript-based runtime environment that aims to be web-interoperable, even if its primary purpose is unrelated to web servers.
+The intended audience for this Standard is for web server runtime environments that want to be interoperable with the web platform. However, the set of APIs it describes may be implemented by any ECMAScript-based runtime environment that aims to be web-interoperable, even if its primary purpose is unrelated to web servers.
 
 Conformance {#conformance}
 ==========================
