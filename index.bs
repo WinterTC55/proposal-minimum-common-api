@@ -183,7 +183,7 @@ All of the following methods and properties shall be exposed on the global objec
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/JSTag}} [[!WASM-JS-API-2]]
 * `globalThis.`{{WebAssembly}}.{{WebAssembly/validate()}} [[!WASM-JS-API-2]]
 
-This Standard does not require runtimes to support workers. However, if a runtime has global scopes that map to {{WorkerGlobalScope}} (see [[#global-scope]]), then the global object shall also expose {{WorkerGlobalScope/onerror}},
+This Standard does not require runtimes to support web workers (see [[HTML#workers]]). However, if a runtime has global scopes that map to {{WorkerGlobalScope}} (see [[#global-scope]]), then the global object shall also expose {{WorkerGlobalScope/onerror}},
 {{WorkerGlobalScope/onunhandledrejection}}, {{WorkerGlobalScope/onrejectionhandled}} and
 {{WorkerGlobalScope/self}},
 except as specified in [[#global-scope]]. [[!HTML]]
