@@ -6,8 +6,8 @@ Status: DRAFT
 URL: https://min-common-api.proposal.wintertc.org/
 Repository: https://github.com/WinterTC55/proposal-minimum-common-api
 Editor: James M Snell, Cloudflare https://cloudflare.com/, jsnell@cloudflare.com
-Abstract: Minimum Common Web Platform API for Non-Browser ECMAScript-based runtimes.
 Markup Shorthands: markdown yes
+No Abstract: yes
 </pre>
 <pre class=link-defaults>
 spec:url; type:interface; text:URL
@@ -17,9 +17,9 @@ spec:fetch; type:method; text:fetch()
 
 <h2 class="no-num" id="intro">Introduction</h2>
 
-There is a wide base of ECMAScript runtime environments being used beyond web browsers, specifically in web server and edge platforms. An major benefit to this approach is the ability to use a single programming language across multiple contexts, reducing specialization and allowing for reuse of code across the server and client side.
+There is a wide base of ECMAScript runtime environments being used beyond web browsers, specifically in web server and edge platforms. A major benefit to this approach is the ability to use a single programming language across multiple contexts, reducing specialisation and allowing for reuse of code across the server and client side.
 
-Since code running in web browsers makes up the vast majority of ECMAScript code, runtimes are incentivised to support the same APIs as web browsers. However without a specification of which web platform APIs to be implemented, the resulting landscape provides poor interoperability across such environments.
+Since code running in web browsers makes up the vast majority of ECMAScript code, runtimes are incentivised to support the same APIs as web browsers. However, without a specification of which web platform APIs to be implemented, the resulting landscape provides poor interoperability across such environments.
 
 As such, this Ecma Standard defines the Minimum common web API specification, which defines a subset of Web Platform APIs for server runtimes to implement for interoperability with the web. This is the first edition of the standard, corresponding to the 2025 snapshot. As the web platform and web server runtimes grow and evolve, the committee will aim to publish with an annual cadence.
 
@@ -79,123 +79,194 @@ Terms and definitions {#terminology}
 
 For the purposes of this document, the terms and definitions given in  ECMA-262, Compression Standard, Console Standard, DOM Standard, Encoding Standard, Fetch Standard, File API, High-Resolution Time, HTML Standard, Streams Standard, URL Standard, URL Pattern Standard, WebAssembly JavaScript Interface, WebAssembly Web API, W3C Web Cryptography Level 2, and the following apply. Externally-defined terms are mapped to source in Annex A.
 
-<dfn>Web Platform</dfn> {#term-web-platform}
---------------------------------------------
+<h3 class="no-toc" id="term-web-platform"><dfn>Web Platform</dfn></h3>
 
-the combination of technology standards defined by organizations such as the W3C, the WHATWG, and others as implemented by Web Browsers
+combination of technology standards defined by organizations such as the W3C, the WHATWG, and others as implemented by Web Browsers
 
-<dfn>Web-interoperable Runtime</dfn> {#term-web-interoperable-runtime}
-----------------------------------------------------------------------
+<h3 class="no-toc" id="term-web-interoperable-runtime"><dfn>Web-interoperable Runtime</dfn></h3>
 
 ECMAScript-based runtime environment that implements this Standard
 
 Note: Web Browsers are Web-interoperable Runtimes.<br>
 The term "Web-interoperable Runtime" is intentionally broad. The primary focus of this Standard is web server runtimes.
 
-Common API Index {#api-index}
-=========================
+Common API index {#api-index}
+=============================
 
 All <a>Web-interoperable Runtimes</a> conforming to this Standard shall implement each of the following <a>Web Platform</a> APIs. These should be implemented in accordance with their normative requirements except as specified in [[#global-scope]]. Where any runtime environment must diverge from a normative requirement for technical or structural reasons, clear documentation shall be provided. Documentation shall include both explanation and impact of deviation.
 
 Note: For example, since web server runtimes do not have an [=origin=] concept, they must violate [[!FETCH]]'s requirement of appending an `Origin` header to network requests.
 
-All of the following interfaces shall be exposed on the global object accessible through `globalThis`:
+Common interfaces {#api-interfaces}
+-----------------------------------
 
-* {{AbortController}} [[!DOM]]
-* {{AbortSignal}} [[!DOM]]
-* {{Blob}} [[!FILEAPI]]
-* {{ByteLengthQueuingStrategy}} [[!STREAMS]]
-* {{CompressionStream}} [[!COMPRESSION]]
-* {{CountQueuingStrategy}} [[!STREAMS]]
-* {{Crypto}} [[!WEBCRYPTO]]
-* {{CryptoKey}} [[!WEBCRYPTO]]
-* {{CustomEvent}} [[!HTML]]
-* {{DecompressionStream}} [[!COMPRESSION]]
-* {{DOMException}} [[!WEBIDL]]
-* {{ErrorEvent}} [[!HTML]]
-* {{Event}} [[!DOM]]
-* {{EventTarget}} [[!DOM]]
-* {{File}} [[!FILEAPI]]
-* {{FormData}} [[!XHR]]
-* {{Headers}} [[!FETCH]]
-* {{MessageChannel}} [[!HTML]]
-* {{MessageEvent}} [[!HTML]]
-* {{MessagePort}} [[!HTML]]
-* {{Performance}} [[!HR-TIME]]
-* {{PromiseRejectionEvent}} [[!HTML]]
-* {{ReadableByteStreamController}} [[!STREAMS]]
-* {{ReadableStream}} [[!STREAMS]]
-* {{ReadableStreamBYOBReader}} [[!STREAMS]]
-* {{ReadableStreamBYOBRequest}} [[!STREAMS]]
-* {{ReadableStreamDefaultController}} [[!STREAMS]]
-* {{ReadableStreamDefaultReader}} [[!STREAMS]]
-* {{Request}} [[!FETCH]]
-* {{Response}} [[!FETCH]]
-* {{SubtleCrypto}} [[!WEBCRYPTO]]
-* {{TextDecoder}} [[!ENCODING]]
-* {{TextDecoderStream}} [[!ENCODING]]
-* {{TextEncoder}} [[!ENCODING]]
-* {{TextEncoderStream}} [[!ENCODING]]
-* {{TransformStream}} [[!STREAMS]]
-* {{TransformStreamDefaultController}} [[!STREAMS]]
-* {{URL}} [[!URL]]
-* {{URLPattern}} [[!URLPATTERN]]
-* {{URLSearchParams}} [[!URL]]
-* {{WebAssembly}}.<l spec="wasm-js-api-2">{{Global}}</l> [[!WASM-JS-API-2]]
-* {{WebAssembly}}.{{Instance}} [[!WASM-JS-API-2]]
-* {{WebAssembly}}.{{Memory}} [[!WASM-JS-API-2]]
-* {{WebAssembly}}.{{Module}} [[!WASM-JS-API-2]]
-* {{WebAssembly}}.{{Table}} [[!WASM-JS-API-2]]
-* {{WebAssembly}}.{{Tag}} [[!WASM-JS-API-2]]
-* {{WebAssembly}}.{{Exception}} [[!WASM-JS-API-2]]
-* {{WebAssembly}}.{{CompileError}} [[!WASM-JS-API-2]]
-* {{WebAssembly}}.{{LinkError}} [[!WASM-JS-API-2]]
-* {{WebAssembly}}.{{RuntimeError}} [[!WASM-JS-API-2]]
-* {{WritableStream}} [[!STREAMS]]
-* {{WritableStreamDefaultController}} [[!STREAMS]]
-* {{WritableStreamDefaultWriter}} [[!STREAMS]]
+All of the following interfaces shall be exposed on the global object accessible through `globalThis`.
 
-All of the following methods and properties shall be exposed on the global object accessible through `globalThis`, except as specified in [[#global-scope]]:
+Interfaces defined in [[!DOM]]:
 
-* {{globalThis}} [[!ECMASCRIPT]]
-* `globalThis.`{{atob()}} [[!HTML]]
-* `globalThis.`{{btoa()}} [[!HTML]]
-* `globalThis.`{{clearTimeout()}} [[!HTML]]
-* `globalThis.`{{clearInterval()}} [[!HTML]]
-* `globalThis.`{{console}} [[!CONSOLE]]
-* `globalThis.`{{crypto}} [[!WEBCRYPTO]]
-* `globalThis.`{{fetch()}} [[!FETCH]]
-* `globalThis.`{{navigator}}.{{userAgent}} [[!HTML]]
-* `globalThis.`{{GlobalEventHandlers/onerror}} [[!HTML]]
-* `globalThis.`{{WindowEventHandlers/onunhandledrejection}} [[!HTML]]
-* `globalThis.`{{WindowEventHandlers/onrejectionhandled}} [[!HTML]]
-* `globalThis.`{{performance}} [[!HR-TIME]]
-* `globalThis.`{{queueMicrotask()}} [[!HTML]]
-* `globalThis.`{{reportError()}} [[!HTML]]
-* `globalThis.`{{Window/self}} [[!HTML]]
-* `globalThis.`{{setTimeout()}} [[!HTML]]
-* `globalThis.`{{setInterval()}} [[!HTML]]
-* `globalThis.`{{structuredClone()}} [[!HTML]]
-* `globalThis.`{{WebAssembly}}.{{WebAssembly/compile()}} [[!WASM-JS-API-2]]
-* `globalThis.`{{WebAssembly}}.{{WebAssembly/compileStreaming()}} [[!WASM-WEB-API-2]]
-* `globalThis.`{{WebAssembly}}.{{WebAssembly/instantiate()}} [[!WASM-JS-API-2]]
-* `globalThis.`{{WebAssembly}}.{{WebAssembly/instantiateStreaming()}} [[!WASM-WEB-API-2]]
-* `globalThis.`{{WebAssembly}}.{{WebAssembly/JSTag}} [[!WASM-JS-API-2]]
-* `globalThis.`{{WebAssembly}}.{{WebAssembly/validate()}} [[!WASM-JS-API-2]]
+* {{AbortController}}
+* {{AbortSignal}}
+* {{Event}}
+* {{EventTarget}}
 
-This Standard does not require runtimes to support [=web workers=]. However, if a runtime has global scopes that map to {{WorkerGlobalScope}} (see [[#global-scope]]), then the global object shall also expose {{WorkerGlobalScope/onerror}},
-{{WorkerGlobalScope/onunhandledrejection}}, {{WorkerGlobalScope/onrejectionhandled}} and
-{{WorkerGlobalScope/self}},
-except as specified in [[#global-scope]]. [[!HTML]]
+Interfaces defined in [[!HTML]]:
 
-The Global Scope {#global-scope}
+* {{CustomEvent}}
+* {{ErrorEvent}}
+* {{MessageChannel}}
+* {{MessageEvent}}
+* {{MessagePort}}
+* {{PromiseRejectionEvent}}
+
+Interfaces defined in [[!WEBIDL]]:
+
+* {{DOMException}}
+
+Interfaces defined in [[!FETCH]]:
+
+* {{Headers}}
+* {{Request}}
+* {{Response}}
+
+Interfaces defined in [[!XHR]]:
+
+* {{FormData}}
+
+    Note: The {{FormData}} constructor takes <i>optional</i> arguments of the types {{HTMLFormElement}} and {{HTMLElement}}, which are web API interfaces not included in the common API list in this Standard. Since both of these arguments are optional, the behavior when both are `undefined` or not given is always well-defined. The behavior in other cases for runtimes that do not implement such APIs is not well-defined by this Standard; future editions will provide greater clarity.
+
+Interfaces defined in [[!FILEAPI]]:
+
+* {{Blob}}
+* {{File}}
+
+Interfaces defined in [[!COMPRESSION]]:
+
+* {{CompressionStream}}
+* {{DecompressionStream}}
+
+Interfaces defined in [[!STREAMS]]:
+
+* {{ByteLengthQueuingStrategy}}
+* {{CountQueuingStrategy}}
+* {{ReadableByteStreamController}}
+* {{ReadableStream}}
+* {{ReadableStreamBYOBReader}}
+* {{ReadableStreamBYOBRequest}}
+* {{ReadableStreamDefaultController}}
+* {{ReadableStreamDefaultReader}}
+* {{TransformStream}}
+* {{TransformStreamDefaultController}}
+* {{WritableStream}}
+* {{WritableStreamDefaultController}}
+* {{WritableStreamDefaultWriter}}
+
+Interfaces defined in [[!ENCODING]]:
+
+* {{TextDecoder}}
+* {{TextDecoderStream}}
+* {{TextEncoder}}
+* {{TextEncoderStream}}
+
+Interfaces defined in [[!URL]]:
+
+* {{URL}}
+* {{URLSearchParams}}
+
+Interfaces defined in [[!URLPATTERN]]:
+
+* {{URLPattern}}
+
+Interfaces defined in [[!WEBCRYPTO]]:
+
+* {{Crypto}}
+* {{CryptoKey}}
+* {{SubtleCrypto}}
+
+Interfaces defined in [[!HR-TIME]]:
+
+* {{Performance}}
+
+Interfaces defined in [[!WASM-JS-API-2]]:
+
+* {{WebAssembly}}`.`<l spec="wasm-js-api-2">{{Global}}</l>
+* {{WebAssembly}}`.`{{Instance}}
+* {{WebAssembly}}`.`{{Memory}}
+* {{WebAssembly}}`.`{{Module}}
+* {{WebAssembly}}`.`{{Table}}
+* {{WebAssembly}}`.`{{Tag}}
+* {{WebAssembly}}`.`{{Exception}}
+* {{WebAssembly}}`.`{{CompileError}}
+* {{WebAssembly}}`.`{{LinkError}}
+* {{WebAssembly}}`.`{{RuntimeError}}
+
+Common methods and properties {#api-methods}
+------------------------------------------
+
+All of the following methods and properties shall be exposed on the global object accessible through `globalThis`, except as specified in [[#global-scope]].
+
+* {{globalThis}} (as defined in [[!ECMASCRIPT]])
+
+Methods and properties defined in [[!HTML]]:
+
+* `globalThis.`{{atob()}}
+* `globalThis.`{{btoa()}}
+* `globalThis.`{{clearTimeout()}}
+* `globalThis.`{{clearInterval()}}
+* `globalThis.`{{navigator}}`.`{{userAgent}}
+* `globalThis.`{{GlobalEventHandlers/onerror}}
+* `globalThis.`{{WindowEventHandlers/onunhandledrejection}}
+* `globalThis.`{{WindowEventHandlers/onrejectionhandled}}
+* `globalThis.`{{queueMicrotask()}}
+* `globalThis.`{{reportError()}}
+* `globalThis.`{{Window/self}}
+* `globalThis.`{{setTimeout()}}
+* `globalThis.`{{setInterval()}}
+* `globalThis.`{{structuredClone()}}
+
+Methods and properties defined in [[!FETCH]]:
+
+* `globalThis.`{{fetch()}}
+
+Methods and properties defined in [[!CONSOLE]]:
+
+* `globalThis.`{{console}}
+
+Methods and properties defined in [[!WEBCRYPTO]]:
+
+* `globalThis.`{{crypto}}
+
+Methods and properties defined in [[!HR-TIME]]:
+
+* `globalThis.`{{performance}}
+
+Methods and properties defined in [[!WASM-JS-API-2]]:
+
+* `globalThis.`{{WebAssembly}}`.`{{WebAssembly/compile()}}
+* `globalThis.`{{WebAssembly}}`.`{{WebAssembly/compileStreaming()}}
+* `globalThis.`{{WebAssembly}}`.`{{WebAssembly/instantiate()}}
+* `globalThis.`{{WebAssembly}}`.`{{WebAssembly/instantiateStreaming()}}
+* `globalThis.`{{WebAssembly}}`.`{{WebAssembly/JSTag}}
+* `globalThis.`{{WebAssembly}}`.`{{WebAssembly/validate()}}
+
+Web workers {#api-workers}
+--------------------------
+
+This Standard does not require runtimes to support [=web workers=]. However, if a runtime has global scopes that map to {{WorkerGlobalScope}} (see [[#global-scope]]), then the global object shall also expose the following event handlers and attributes as defined in [[!HTML]],
+except as specified in [[#global-scope]].
+
+* {{WorkerGlobalScope/onerror}}
+* {{WorkerGlobalScope/onunhandledrejection}}
+* {{WorkerGlobalScope/onrejectionhandled}}
+* {{WorkerGlobalScope/self}}
+
+The global scope {#global-scope}
 ================================
 
 The exact type of the global scope (`globalThis`) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like {{Window}}, {{WorkerGlobalScope}}, and so forth. To simplify conformance, this Standard does not require such global scope interfaces to be supported, but each global scope in a relevant runtime may be mapped to a global scope interface defined in web specifications. All interfaces, methods, and properties defined by this Standard which are required by web specifications to be exposed in a global scope interface shall be exposed on all of the runtime's corresponding global scopes (e.g., `globalThis.crypto`, `globalThis.ReadableStream`, etc).
 
-Note: It is expected that a runtime's main global scope maps to {{Window}}, that web worker global scopes map to {{WorkerGlobalScope}}, etc. Global scopes that do not map to any global interface could only implement web APIs defined as {{Exposed|[Exposed=*]}}.
+Note: A runtime's main global scope should map to {{Window}}, web worker global scope should map to {{WorkerGlobalScope}}, etc. Global scopes that do not map to a specifically defined global interface can only implement web APIs defined as {{Exposed|[Exposed=*]}}.
 
-With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. [[!WEBIDL]] To avoid introducing breaking changes, runtimes conforming to this Standard may omit the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
+With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using [=read only|the `readonly` attribute=]. To avoid introducing breaking changes, runtimes conforming to this Standard may omit the `readonly` attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.
 
 Whenever the global object corresponds to the {{Window}} or {{WorkerGlobalScope}} global interfaces, it should be an instance of {{EventTarget}}. Web-interoperable runtimes should follow the <a>report an exception</a> algorithm, and the JavaScript <a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a> host hook, as defined in [[!HTML]]. This includes firing the {{Window/error}}, {{Window/unhandledrejection}} and {{Window/rejectionhandled}} events on the global object.
 
