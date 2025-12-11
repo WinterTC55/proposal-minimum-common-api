@@ -1,6 +1,6 @@
 # Minimum common web API
 
-This repository contains the source for the current draft and all published editions of the Minimum common web API specification.
+This repository contains the source for the current draft and all published editions of ECMA-429, the WinterTC Minimum common web API specification.
 
 This specification aims to define a minimal collection of web APIs that should be implemented by server side runtimes that aim to be web-interoperable.
 
