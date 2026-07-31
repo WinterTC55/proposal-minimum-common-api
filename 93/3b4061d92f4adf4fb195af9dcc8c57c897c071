@@ -1,0 +1,19 @@
+package.json
+  s_b6acee4c1942bc::t_0ab810cad1b33f 1-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "933b4061d92f4adf4fb195af9dcc8c57c897c071",
+  "prompts": {},
+  "sessions": {
+    "s_b6acee4c1942bc": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_046c82c4dffeFSLA3eppr5l08f",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "James M Snell <jsnell@cloudflare.com>"
+    }
+  }
+}
