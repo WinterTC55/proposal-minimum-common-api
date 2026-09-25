@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-GB-oxendict">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="./img/favicon.ico">
+  <title>Minimum common web API specification</title>
+  <style>
+    .toc dfn, h1 dfn {
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+<pre class="metadata">
+  title: Minimum common web API specification
+  shortname: ECMA-429
+  status: draft
+  date: 2027-06-29
+  version: 2nd edition
+  committee: 55
+  boilerplate:
+    copyright: alternative
+  location: https://min-common-api.wintertc.org/
+</pre>
+
+<emu-biblio href="./biblio.json"></emu-biblio>
+
+<p><img src="./img/ecma-logo.svg" id="ecma-logo" alt="Ecma International logo"></p>
+
+<div id="metadata-block">
+  <h1>Contributing to this Specification</h1>
+
+  <dl>
+    <dt>This version:</dt>
+    <dd><a href="https://min-common-api.wintertc.org/">https://min-common-api.wintertc.org/</a></dd>
+    <dt>Issue Tracking:</dt>
+    <dd><a href="https://github.com/WinterTC55/proposal-minimum-common-api/issues/">GitHub</a></dd>
+    <dt>Editor:</dt>
+    <dd><a href="mailto:jsnell@cloudflare.com">James M Snell</a> (<a href="https://cloudflare.com/">Cloudflare</a>)</dd>
+  </dl>
+</div>
+
+<emu-intro id="sec-intro">
+  <h1>Introduction</h1>
+
+  <p>There is a wide base of ECMAScript runtime environments being used beyond web browsers, specifically in web server and edge platforms. A major benefit to this approach is the ability to use a single programming language across multiple contexts, reducing specialization and allowing for reuse of code across the server and client side.</p>
+  <p>Since code running in web browsers makes up the vast majority of ECMAScript code, runtimes are incentivised to support the same APIs as web browsers. However, without a specification of which web platform APIs to be implemented, the resulting landscape provides poor interoperability across such environments.</p>
+  <p>As such, this Ecma Standard defines a minimum common web API, which identifies a subset of Web Platform APIs for server runtimes to implement for interoperability with the web. This is the first edition of the standard, corresponding to the 2025 snapshot. As the web platform and web server runtimes grow and evolve, the committee will aim to publish with a regular cadence.</p>
+</emu-intro>
+
+<emu-clause id="sec-scope">
+  <h1>Scope</h1>
+
+  <p>This Standard defines the 2025 snapshot of the minimum common web API, a curated subset of APIs within web platform standards from standards organizations such as W3C and WHATWG, which is intended to define a minimum set of capabilities common to browser and web server runtime environments based on ECMAScript.</p>
+  <p>The intended audience for this Standard is for web server runtime environments that want to be interoperable with the web platform. However, the set of APIs it describes may be implemented by any ECMAScript-based runtime environment that aims to be web-interoperable, even if its primary purpose is unrelated to web servers.</p>
+</emu-clause>
+
+<emu-clause id="sec-conformance">
+  <h1>Conformance</h1>
+
+  <p>A conforming implementation of this Standard shall provide the interfaces and properties listed in this specification, according to their definition in the corresponding standard. A conforming implementation shall also conform to ECMA-262.</p>
+  <p>Runtime-specific extensions to any Web Platform API may be implemented by conforming runtimes. Such extensions shall be defined so that their use neither contradicts with, nor causes the non-conformance of, normative functionality of any Web Platform API. Extending API surface, even without modifying existing API behaviours, should be avoided as it can reduce interoperability and portability of code across runtimes.</p>
+  <p>Runtimes may implement Web Platform APIs beyond those listed in this Standard.</p>
+
+  <emu-note>
+    Note: For example, the Performance API could be extended with additional methods or properties beyond those defined in the High-Resolution Time specifications, such as those defined in the Performance Timeline or User Timing Level 3 specifications.
+  </emu-note>
+</emu-clause>
+
+<emu-clause id="sec-normative-references">
+  <h1>Normative References</h1>
+  <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
+
+  <p>
+    ECMA-262, <cite>ECMAScript Language Specification</cite><br>
+    <a href="https://tc39.es/ecma262/">https://tc39.es/ecma262/</a>
+  </p>
+
+  <p>
+    IETF RFC 9110, <cite>HTTP Semantics</cite>. June 2022.<br>
+    <a href="https://datatracker.ietf.org/doc/rfc9110/">https://datatracker.ietf.org/doc/rfc9110/</a>
+  </p>
+
+  <p>
+    W3C <cite>File API</cite><br>
+    <a href="https://w3c.github.io/FileAPI/">https://w3c.github.io/FileAPI/</a>
+  </p>
+
+  <p>
+    W3C <cite>High-Resolution Time</cite><br>
+    <a href="https://w3c.github.io/hr-time/">https://w3c.github.io/hr-time/</a>
+  </p>
+
+  <p>
+    W3C <cite>WebAssembly JavaScript Interface</cite><br>
+    <a href="https://webassembly.github.io/spec/js-api/">https://webassembly.github.io/spec/js-api/</a>
+  </p>
+
+  <p>
+    W3C <cite>WebAssembly Web API</cite><br>
+    <a href="https://webassembly.github.io/spec/web-api/">https://webassembly.github.io/spec/web-api/</a>
+  </p>
+
+  <p>
+    W3C <cite>Web Cryptography Level 2</cite><br>
+    <a href="https://w3c.github.io/webcrypto/">https://w3c.github.io/webcrypto/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>Compression Standard</cite><br>
+    <a href="https://compression.spec.whatwg.org/">https://compression.spec.whatwg.org/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>Console Standard</cite><br>
+    <a href="https://console.spec.whatwg.org/">https://console.spec.whatwg.org/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>DOM Standard</cite><br>
+    <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>Encoding Standard</cite><br>
+    <a href="https://encoding.spec.whatwg.org/">https://encoding.spec.whatwg.org/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>Fetch Standard</cite><br>
+    <a href="https://fetch.spec.whatwg.org/">https://fetch.spec.whatwg.org/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>HTML Standard</cite><br>
+    <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>Streams Standard</cite><br>
+    <a href="https://streams.spec.whatwg.org/">https://streams.spec.whatwg.org/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>URL Standard</cite><br>
+    <a href="https://url.spec.whatwg.org/">https://url.spec.whatwg.org/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>URL Pattern Standard</cite><br>
+    <a href="https://urlpattern.spec.whatwg.org/">https://urlpattern.spec.whatwg.org/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>Web IDL Standard</cite><br>
+    <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
+  </p>
+
+  <p>
+    WHATWG <cite>XMLHttpRequest Standard</cite><br>
+    <a href="https://xhr.spec.whatwg.org/">https://xhr.spec.whatwg.org/</a>
+  </p>
+</emu-clause>
+
+<emu-clause id="sec-terms-and-definitions">
+  <h1>Terms and definitions</h1>
+
+  <p>For the purposes of this document, the terms and definitions given in ECMA-262, Compression Standard, Console Standard, DOM Standard, Encoding Standard, Fetch Standard, File API, High-Resolution Time, HTML Standard, Streams Standard, URL Standard, URL Pattern Standard, WebAssembly JavaScript Interface, WebAssembly Web API, W3C Web Cryptography Level 2, and the following apply.</p>
+
+  <emu-clause id="sec-term-web-platform">
+    <h1><dfn id="web-platform" variants="Web Platform">web platform</dfn></h1>
+    <p>combination of technology standards defined by organizations such as the W3C, the WHATWG, and others as implemented by Web Browsers</p>
+  </emu-clause>
+
+  <emu-clause id="sec-term-web-interoperable-runtime">
+    <h1><dfn id="web-interoperable-runtimes" variants="web-interoperable runtimes">web-interoperable runtime</dfn></h1>
+    <p>ECMAScript-based runtime environment that implements this Standard</p>
+
+    <emu-note>
+      <p>Web browsers are web-interoperable runtimes. The term “web-interoperable runtime” is intentionally broad. The primary focus of this Standard is web server runtimes.</p>
+    </emu-note>
+  </emu-clause>
+</emu-clause>
+
+<emu-clause id="sec-common-API-index">
+  <h1>Common API index</h1>
+
+  <p>All web-interoperable runtimes conforming to this Standard shall implement each of the following Web Platform APIs. These should be implemented in accordance with their normative requirements except as specified in Clause <emu-xref href="#sec-the-global-scope"></emu-xref>, <emu-xref href="#sec-the-global-scope" title></emu-xref>. Where any runtime environment must diverge from a normative requirement for technical or structural reasons, clear documentation shall be provided. Documentation shall include both explanation and impact of deviation.</p>
+
+  <emu-note>
+    <p>For example, since web server runtimes do not have an origin concept, they must violate the Fetch Standard’s requirement of appending an Origin header to network requests.</p>
+  </emu-note>
+
+  <emu-clause id="sec-common-interfaces">
+    <h1>Common interfaces</h1>
+    <p>All the following interfaces shall be exposed on the global object accessible through *globalThis*.</p>
+
+    <emu-clause id="sec-interfaces-dom">
+      <h1>Interfaces defined in DOM Standard</h1>
+      <ul>
+        <li>AbortController</li>
+        <li>AbortSignal</li>
+        <li>Event</li>
+        <li>EventTarget</li>
+        <li>CustomEvent</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-html">
+      <h1>Interfaces defined in HTML Standard</h1>
+
+      <ul>
+        <li>ErrorEvent</li>
+        <li>MessageChannel</li>
+        <li>MessageEvent</li>
+        <li>MessagePort</li>
+        <li>PromiseRejectionEvent</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-web-idl">
+      <h1>Interfaces defined in Web IDL Standard</h1>
+
+      <ul>
+        <li>DOMException</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-fetch">
+      <h1>Interfaces defined in Fetch Standard</h1>
+
+      <ul>
+        <li>Headers</li>
+        <li>Request</li>
+        <li>Response</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-xhr">
+      <h1>Interfaces defined in XMLHttpRequest Standard</h1>
+
+      <ul>
+        <li>
+          <p>FormData</p>
+
+          <emu-note>
+            <p>The FormData constructor takes <i>optional</i> arguments of the types _HTMLFormElement_ and _HTMLElement_, which are web API interfaces not included in the common API list in this Standard. Since both of these arguments are optional, the behaviour when both are *undefined* or not given is always well-defined. The behaviour in other cases for runtimes that do not implement such APIs is not well-defined by this Standard; future editions will provide greater clarity.</p>
+          </emu-note>
+        </li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-file-api">
+      <h1>Interfaces defined in File API</h1>
+
+      <ul>
+        <li>Blob</li>
+        <li>File</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-compression">
+      <h1>Interfaces defined in Compression Standard</h1>
+
+      <ul>
+        <li>CompressionStream</li>
+        <li>DecompressionStream</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-streams">
+      <h1>Interfaces defined in Streams Standard</h1>
+
+      <ul>
+        <li>ByteLengthQueuingStrategy</li>
+        <li>CountQueuingStrategy</li>
+        <li>ReadableByteStreamController</li>
+        <li>ReadableStream</li>
+        <li>ReadableStreamBYOBReader</li>
+        <li>ReadableStreamBYOBRequest</li>
+        <li>ReadableStreamDefaultController</li>
+        <li>ReadableStreamDefaultReader</li>
+        <li>TransformStream</li>
+        <li>TransformStreamDefaultController</li>
+        <li>WritableStream</li>
+        <li>WritableStreamDefaultController</li>
+        <li>WritableStreamDefaultWriter</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-encoding">
+      <h1>Interfaces defined in Encoding Standard</h1>
+
+      <ul>
+        <li>TextDecoder</li>
+        <li>TextDecoderStream</li>
+        <li>TextEncoder</li>
+        <li>TextEncoderStream</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-url">
+      <h1>Interfaces defined in URL Standard</h1>
+
+      <ul>
+        <li>URL</li>
+        <li>URLSearchParams</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-url-pattern">
+      <h1>Interfaces defined in URL Pattern Standard</h1>
+
+      <ul>
+        <li>URLPattern</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-web-crypto">
+      <h1>Interfaces defined in Web Cryptography Level 2</h1>
+
+      <ul>
+        <li>Crypto</li>
+        <li>CryptoKey</li>
+        <li>SubtleCrypto</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-hr-time">
+      <h1>Interfaces defined in High-Resolution Time</h1>
+
+      <ul>
+        <li>Performance</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-interfaces-webassembly">
+      <h1>Interfaces defined in WebAssembly JavaScript Interface</h1>
+
+      <ul>
+        <li>WebAssembly.Global</li>
+        <li>WebAssembly.Instance</li>
+        <li>WebAssembly.Memory</li>
+        <li>WebAssembly.Module</li>
+        <li>WebAssembly.Table</li>
+        <li>WebAssembly.Tag</li>
+        <li>WebAssembly.Exception</li>
+        <li>WebAssembly.CompileError</li>
+        <li>WebAssembly.LinkError</li>
+        <li>WebAssembly.RuntimeError</li>
+      </ul>
+    </emu-clause>
+  </emu-clause>
+
+  <emu-clause id="sec-common-methods-and-properties">
+    <h1>Common methods and properties</h1>
+
+    <p>All the following methods and properties shall be exposed on the global object accessible through globalThis, except as specified in Clause <emu-xref href="#sec-the-global-scope"></emu-xref>, <emu-xref href="#sec-the-global-scope" title></emu-xref>.</p>
+
+    <ul>
+      <li>globalThis</li>
+    </ul>
+
+    <emu-clause id="sec-methods-html">
+      <h1>Methods and properties defined in HTML Standard</h1>
+
+      <ul>
+        <li>*globalThis*.atob()</li>
+        <li>*globalThis*.btoa()</li>
+        <li>*globalThis*.clearTimeout()</li>
+        <li>*globalThis*.clearInterval()</li>
+        <li>*globalThis*.navigator.userAgent</li>
+        <li>*globalThis*.onerror</li>
+        <li>*globalThis*.onunhandledrejection</li>
+        <li>*globalThis*.onrejectionhandled</li>
+        <li>*globalThis*.queueMicrotask()</li>
+        <li>*globalThis*.reportError()</li>
+        <li>*globalThis*.self</li>
+        <li>*globalThis*.setTimeout()</li>
+        <li>*globalThis*.setInterval()</li>
+        <li>*globalThis*.structuredClone()</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-methods-fetch">
+      <h1>Methods and properties defined in Fetch Standard</h1>
+
+      <ul>
+        <li>*globalThis*.fetch()</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-methods-console">
+      <h1>Methods and properties defined in Console Standard</h1>
+
+      <ul>
+        <li>*globalThis*.console</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-methods-web-crypto">
+      <h1>Methods and properties defined in Web Cryptography Level 2</h1>
+      <ul>
+        <li>*globalThis*.crypto</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-methods-high-resolution-time">
+      <h1>Methods and properties defined in High-Resolution Time</h1>
+      <ul>
+        <li>*globalThis*.performance</li>
+      </ul>
+    </emu-clause>
+
+    <emu-clause id="sec-methods-wasm-interface">
+      <h1>Methods and properties defined in WebAssembly JavaScript Interface</h1>
+
+      <ul>
+        <li>*globalThis*.WebAssembly.compile()</li>
+        <li>*globalThis*.WebAssembly.compileStreaming()</li>
+        <li>*globalThis*.WebAssembly.instantiate()</li>
+        <li>*globalThis*.WebAssembly.instantiateStreaming()</li>
+        <li>*globalThis*.WebAssembly.JSTag</li>
+        <li>*globalThis*.WebAssembly.validate()</li>
+      </ul>
+    </emu-clause>
+  </emu-clause>
+
+  <emu-clause id="sec-web-workers" normative-optional>
+    <h1>Web workers</h1>
+
+    <p>This Standard does not require runtimes to support web workers. However, if a runtime has global scopes that map to WorkerGlobalScope (see <emu-xref href="#sec-the-global-scope" title></emu-xref>), then the global object shall also expose the following event handlers and attributes as defined in HTML Standard, except as specified in <emu-xref href="#sec-the-global-scope" title></emu-xref>.</p>
+
+    <ul>
+      <li>workerGlobal.onerror</li>
+      <li>workerGlobal.onunhandledrejection</li>
+      <li>workerGlobal.onrejectionhandled</li>
+      <li>workerGlobal.self</li>
+    </ul>
+  </emu-clause>
+</emu-clause>
+
+<emu-clause id="sec-the-global-scope">
+  <h1>The global scope</h1>
+
+  <p>The exact type of the global scope (*globalThis*) can vary across runtimes. Most Web Platform APIs are defined in terms that assume Web Browser environments that specifically expose types like Window, WorkerGlobalScope, and so forth. To simplify conformance, this Standard does not require such global scope interfaces to be supported, but each global scope in a relevant runtime may be mapped to a global scope interface defined in web specifications. All interfaces, methods, and properties defined by this Standard which are required by web specifications to be exposed in a global scope interface shall be exposed on all the runtime’s corresponding global scopes (e.g., *globalThis*.crypto, *globalThis*.ReadableStream, etc).</p>
+
+  <emu-note>
+    <p>A runtime’s main global scope should map to Window, web worker global scope should map to WorkerGlobalScope, etc. Global scopes that do not map to a specifically defined global interface can only implement web APIs defined as [Exposed=*].</p>
+  </emu-note>
+
+  <p>With many runtimes, adding a new global-scoped property can introduce breaking changes when the new global conflicts with existing application code. Many Web Platform APIs define global properties using the readonly attribute. To avoid introducing breaking changes, runtimes conforming to this Standard may omit the readonly attribute for properties being added to the global scope. This allows users of these runtimes to delete or overwrite these properties if they conflict with existing application code.</p>
+  <p>Whenever the global object corresponds to the Window or WorkerGlobalScope global interfaces, it should be an instance of EventTarget. Web-interoperable runtimes should follow the report an exception algorithm, and the ECMAScript HostPromiseRejectionTracker host hook, as defined in the HTML Standard. This includes firing the event error, unhandledrejection and rejectionhandled events on the global object.</p>
+  <p>In cases where it is not possible to have such global objects be an instance of EventTarget due to legacy reasons, the relevant events shall still be fired through a suitable alternative mechanism available at the global scope. This mechanism shall provide at least the same information that is provided by the relevant event interfaces if the global object were to be an EventTarget. Such runtimes shall not support the onerror, onunhandledrejection and onrejectionhandled global properties. Such runtimes are not required to implement the ErrorEvent and PromiseRejectionEvent interfaces.</p>
+
+  <emu-note>
+    <p>For example, in Node.js the global object does not implement EventTarget, and the relevant events are fired on the *globalThis*._process_ object with the names `uncaughtException`, `unhandledRejection` and `rejectionHandled`, respectively.</p>
+  </emu-note>
+</emu-clause>
+
+<emu-clause id="sec-requirements-for-user-agent">
+  <h1>Requirements for default User-Agent value</h1>
+
+  <p>The default User-Agent value is provided such that application code can reliably identify the runtime within which it is running. The value shall be a string conforming to the User-Agent construction in RFC 9110:</p>
+  <pre><code class="plaintext">User-Agent      = product *( RWS ( product / comment ) )
+product         = token ["/" product-version]
+product-version = token
+</code></pre>
+  <p>The default User-Agent value should be treated by application code as a single, complete, opaque, unstructured value. It is recommended that the value be limited to a single *product* token excluding the optional *product-version*. The value should not include any *comment* components.</p>
+
+  <emu-note>
+    <p>For instance, navigator.userAgent could be set to *'MyRuntime'*.</p>
+  </emu-note>
+</emu-clause>
+
+<emu-annex id="sec-colophon" back-matter>
+  <h1>Colophon</h1>
+
+  <p>
+    This specification is authored on
+    <a href="https://github.com/WinterTC55/proposal-minimum-common-api/settings">GitHub</a> in a plaintext source format called
+    <a href="https://github.com/tc39/ecmarkup">Ecmarkup</a>. Ecmarkup is an HTML and Markdown dialect that provides a framework and toolset for authoring Ecma specifications in plaintext and processing the specification into a full-featured HTML rendering that follows the editorial conventions for this document. Ecmarkup builds on and integrates a number of other formats and technologies including
+    <a href="https://github.com/rbuckton/grammarkdown">Grammarkdown</a> for defining syntax and
+    <a href="https://github.com/tc39/ecmarkdown">Ecmarkdown</a> for authoring algorithm steps. PDF renderings of this specification are produced using a print stylesheet which takes advantage of the CSS Paged Media specification and is converted using
+    <a href="https://www.princexml.com/">PrinceXML</a>.
+  </p>
+
+  <p>Draft versions of this specification were authored in <a href="https://github.com/speced/bikeshed">bikeshed</a>, a specification preprocessor used by many web- and web-adjacent standards groups.</p>
+</emu-annex>
+</body>
+</html>

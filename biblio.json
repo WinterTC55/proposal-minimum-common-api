@@ -1,0 +1,221 @@
+[
+  {
+    "location": "https://tc39.es/ecma262/",
+    "entries": [
+      { "type": "term", "id": "h1-ecma-262", "term": "ECMA-262" },
+      { "type": "term", "id": "sec-globalthis", "term": "globalThis" },
+      { "type": "term", "id": "sec-host-promise-rejection-tracker", "term": "HostPromiseRejectionTracker" }
+    ]
+  },
+  {
+    "location": "https://compression.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-compression-standard", "term": "Compression Standard" },
+      { "type": "term", "id": "compressionstream", "term": "CompressionStream" },
+      { "type": "term", "id": "decompressionstream", "term": "DecompressionStream" }
+    ]
+  },
+  {
+    "location": "https://comms.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "messageevent", "term": "MessageEvent" }
+    ]
+  },
+  {
+    "location": "https://console.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-console", "term": "Console Standard" },
+      { "type": "term", "id": "namespacedef-console", "term": "console" }
+    ]
+  },
+  {
+    "location": "https://www.rfc-editor.org/rfc/rfc9110.html",
+    "entries": [
+      { "type": "term", "id": "h1-rfc-9110", "term": "RFC 9110" },
+      { "type": "term", "id": "name-user-agent", "term": "User-Agent" }
+    ]
+  },
+  {
+    "location": "https://dom.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-dom-standard", "term": "DOM Standard" },
+      { "type": "term", "id": "customevent", "term": "CustomEvent" },
+      { "type": "term", "id": "abortcontroller", "term": "AbortController" },
+      { "type": "term", "id": "abortsignal", "term": "AbortSignal" },
+      { "type": "term", "id": "event", "term": "Event" },
+      { "type": "term", "id": "eventtarget", "term": "EventTarget" }
+    ]
+  },
+  {
+    "location": "https://encoding.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-encoding", "term": "Encoding Standard" },
+      { "type": "term", "id": "textdecoder", "term": "TextDecoder" },
+      { "type": "term", "id": "textdecoderstream", "term": "TextDecoderStream" },
+      { "type": "term", "id": "textencoder", "term": "TextEncoder" },
+      { "type": "term", "id": "textencoderstream", "term": "TextEncoderStream" }
+    ]
+  },
+  {
+    "location": "https://fetch.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-fetch", "term": "Fetch Standard" },
+      { "type": "term", "id": "dom-global-fetch", "term": "fetch()" },
+      { "type": "term", "id": "headers", "term": "Headers" },
+      { "type": "term", "id": "request", "term": "Request" },
+      { "type": "term", "id": "default-user-agent-value", "term": "default User-Agent value" },
+      { "type": "term", "id": "response", "term": "Response" }
+    ]
+  },
+  {
+    "location": "https://html.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-html", "term": "HTML Standard" },
+      { "type": "term", "id": "event-error", "term": "event error" },
+      { "type": "term", "id": "event-unhandledrejection", "term": "unhandledrejection" },
+      { "type": "term", "id": "event-rejectionhandled", "term": "rejectionhandled" },
+      { "type": "term", "id": "dom-self", "term": "self" },
+      { "type": "term", "id": "window", "term": "Window" },
+      { "type": "term", "id": "dom-queuemicrotask", "term": "queueMicrotask()" },
+      { "type": "term", "id": "dom-settimeout", "term": "setTimeout()" },
+      { "type": "term", "id": "dom-cleartimeout", "term": "clearTimeout()" },
+      { "type": "term", "id": "dom-setinterval", "term": "setInterval()" },
+      { "type": "term", "id": "dom-clearinterval", "term": "clearInterval()" },
+      { "type": "term", "id": "dom-navigator", "term": "navigator" },
+      { "type": "term", "id": "dom-navigator-useragent", "term": "navigator.userAgent" },
+      { "type": "term", "id": "dom-structuredclone", "term": "structuredClone()" },
+      { "type": "term", "id": "dom-atob", "term": "atob()" },
+      { "type": "term", "id": "dom-btoa", "term": "btoa()" },
+      { "type": "term", "id": "handler-onerror", "term": "onerror" },
+      { "type": "term", "id": "handler-window-onunhandledrejection", "term": "onunhandledrejection" },
+      { "type": "term", "id": "handler-window-onrejectionhandled", "term": "onrejectionhandled" },
+      { "type": "term", "id": "dom-reporterror", "term": "reportError()" },
+      { "type": "term", "id": "errorevent", "term": "ErrorEvent" },
+      { "type": "term", "id": "promiserejectionevent", "term": "PromiseRejectionEvent" },
+      { "type": "term", "id": "report-an-exception", "term": "report an exception" },
+      { "type": "term", "id": "messagechannel", "term": "MessageChannel" },
+      { "type": "term", "id": "messageport", "term": "MessagePort" },
+      { "type": "term", "id": "handler-workerglobalscope-onerror", "term": "workerGlobal.onerror" },
+      { "type": "term", "id": "handler-workerglobalscope-onunhandledrejection", "term": "workerGlobal.onunhandledrejection" },
+      { "type": "term", "id": "handler-workerglobalscope-onrejectionhandled", "term": "workerGlobal.onrejectionhandled" },
+      { "type": "term", "id": "dom-workerglobalscope-self", "term": "workerGlobal.self" },
+      { "type": "term", "id": "the-workerglobalscope-common-interface", "term": "WorkerGlobalScope" }
+    ]
+  },
+  {
+    "location": "https://streams.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-streams", "term": "Streams Standard" },
+      { "type": "term", "id": "bytelengthqueuingstrategy", "term": "ByteLengthQueuingStrategy" },
+      { "type": "term", "id": "countqueuingstrategy", "term": "CountQueuingStrategy" },
+      { "type": "term", "id": "readablebytestreamcontroller", "term": "ReadableByteStreamController" },
+      { "type": "term", "id": "readablestream", "term": "ReadableStream" },
+      { "type": "term", "id": "readablestreambyobreader", "term": "ReadableStreamBYOBReader" },
+      { "type": "term", "id": "readablestreambyobrequest", "term": "ReadableStreamBYOBRequest" },
+      { "type": "term", "id": "readablestreamdefaultcontroller", "term": "ReadableStreamDefaultController" },
+      { "type": "term", "id": "readablestreamdefaultreader", "term": "ReadableStreamDefaultReader" },
+      { "type": "term", "id": "transformstream", "term": "TransformStream" },
+      { "type": "term", "id": "transformstreamdefaultcontroller", "term": "TransformStreamDefaultController" },
+      { "type": "term", "id": "writablestream", "term": "WritableStream" },
+      { "type": "term", "id": "writablestreamdefaultcontroller", "term": "WritableStreamDefaultController" },
+      { "type": "term", "id": "writablestreamdefaultwriter", "term": "WritableStreamDefaultWriter" }
+    ]
+  },
+  {
+    "location": "https://url.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "url", "term": "URL" },
+      { "type": "term", "id": "h1-url", "term": "URL Standard" },
+      { "type": "term", "id": "urlsearchparams", "term": "URLSearchParams" }
+    ]
+  },
+  {
+    "location": "https://urlpattern.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-url-pattern", "term": "URL Pattern Standard" },
+      { "type": "term", "id": "urlpattern", "term": "URLPattern" }
+    ]
+  },
+  {
+    "location": "https://w3c.github.io/FileAPI/",
+    "entries": [
+      { "type": "term", "id": "h1-file-api", "term": "File API" },
+      { "type": "term", "id": "dfn-Blob", "term": "Blob" },
+      { "type": "term", "id": "dfn-file", "term": "File" }
+    ]
+  },
+  {
+    "location": "https://w3c.github.io/hr-time/",
+    "entries": [
+      { "type": "term", "id": "h1-high-resolution-time", "term": "High-Resolution Time" },
+      { "type": "term", "id": "sec-performance", "term": "Performance" },
+      { "type": "term", "id": "the-performance-attribute", "term": "performance" }
+    ]
+  },
+  {
+    "location": "https://w3c.github.io/performance-timeline/",
+    "entries": [
+      { "type": "term", "id": "h1-performance-timeline", "term": "Performance Timeline" }
+    ]
+  },
+  {
+    "location": "https://w3c.github.io/user-timing/",
+    "entries": [
+      { "type": "term", "id": "h1-user-timing", "term": "User Timing Level 3" }
+    ]
+  },
+  {
+    "location": "https://w3c.github.io/webcrypto/",
+    "entries": [
+      { "type": "term", "id": "h1-web-cryptography", "term": "Web Cryptography Level 2" },
+      { "type": "term", "id": "dom-windoworworkerglobalscope-crypto", "term": "crypto" },
+      { "type": "term", "id": "dfn-Crypto", "term": "Crypto" },
+      { "type": "term", "id": "dfn-CryptoKey", "term": "CryptoKey" },
+      { "type": "term", "id": "dfn-SubtleCrypto", "term": "SubtleCrypto" }
+    ]
+  },
+  {
+    "location": "https://webassembly.github.io/spec/js-api/",
+    "entries": [
+      { "type": "term", "id": "h1-wasm-js", "term": "WebAssembly JavaScript Interface" },
+      { "type": "term", "id": "global", "term": "WebAssembly.Global" },
+      { "type": "term", "id": "instance", "term": "WebAssembly.Instance" },
+      { "type": "term", "id": "memory", "term": "WebAssembly.Memory" },
+      { "type": "term", "id": "module", "term": "WebAssembly.Module" },
+      { "type": "term", "id": "table", "term": "WebAssembly.Table" },
+      { "type": "term", "id": "tag", "term": "WebAssembly.Tag" },
+      { "type": "term", "id": "exception", "term": "WebAssembly.Exception" },
+      { "type": "term", "id": "exceptiondef-compileerror", "term": "WebAssembly.CompileError" },
+      { "type": "term", "id": "exceptiondef-linkerror", "term": "WebAssembly.LinkError" },
+      { "type": "term", "id": "exceptiondef-runtimeerror", "term": "WebAssembly.RuntimeError" },
+      { "type": "term", "id": "dom-webassembly-compile", "term": "WebAssembly.compile()" },
+      { "type": "term", "id": "dom-webassembly-instantiate", "term": "WebAssembly.instantiate()" },
+      { "type": "term", "id": "dom-webassembly-jstag", "term": "WebAssembly.JSTag" },
+      { "type": "term", "id": "dom-webassembly-validate", "term": "WebAssembly.validate()" }
+    ]
+  },
+  {
+    "location": "https://webassembly.github.io/spec/web-api/",
+    "entries": [
+      { "type": "term", "id": "h1-wasm-web", "term": "WebAssembly Web API" },
+      { "type": "term", "id": "dom-webassembly-instantiatestreaming", "term": "WebAssembly.instantiateStreaming()" },
+      { "type": "term", "id": "dom-webassembly-compilestreaming", "term": "WebAssembly.compileStreaming()" }
+    ]
+  },
+  {
+    "location": "https://webidl.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-web-idl", "term": "Web IDL Standard" },
+      { "type": "term", "id": "dfn-read-only", "term": "readonly attribute" },
+      { "type": "term", "id": "idl-DOMException", "term": "DOMException" },
+      { "type": "term", "id": "exposed", "term": "[Exposed=*]" }
+    ]
+  },
+  {
+    "location": "https://xhr.spec.whatwg.org/",
+    "entries": [
+      { "type": "term", "id": "h1-xhr", "term": "XMLHttpRequest Standard" },
+      { "type": "term", "id": "formdata", "term": "FormData" }
+    ]
+  }
+]

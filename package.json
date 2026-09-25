@@ -1,7 +1,27 @@
 {
   "name": "tc55-min-common-api",
   "private": true,
+  "version": "0.0.0",
+  "description": "The idea behind the Minimum Common API is to document the minimal collection of Web Platform APIs that ought to be implemented by Web-interoperable runtimes.",
   "scripts": {
-    "build": "mkdir -p out && curl --retry 2 --fail https://www.w3.org/publications/spec-generator/ --output out/index.html -F type=bikeshed-spec -F die-on=fatal -F file=@index.bs"
+    "clean": "rm -rf out",
+    "prebuild": "npm run clean && mkdir out && cp -R img out",
+    "build": "ecmarkup --verbose index.emu.html out/index.html --assets external --assets-dir out",
+    "build-for-pdf": "npm run prebuild && ecmarkup --verbose index.emu.html out/index.html --assets external --assets-dir out --printable",
+    "pdf": "npm run build-for-pdf && prince-books --script ./node_modules/ecmarkup/js/print.js out/index.html -o out/ECMA-429.pdf",
+    "watch": "ecmarkup --verbose index.emu.html out/index.html --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WinterTC55/proposal-minimum-common-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WinterTC55/proposal-minimum-common-api/issues"
+  },
+  "homepage": "https://github.com/WinterTC55/proposal-minimum-common-api#readme",
+  "dependencies": {
+    "ecmarkup": "^25.0.1"
   }
 }
