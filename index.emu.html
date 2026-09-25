@@ -45,20 +45,20 @@
 
   <p>There is a wide base of ECMAScript runtime environments being used beyond web browsers, specifically in web server and edge platforms. A major benefit to this approach is the ability to use a single programming language across multiple contexts, reducing specialization and allowing for reuse of code across the server and client side.</p>
   <p>Since code running in web browsers makes up the vast majority of ECMAScript code, runtimes are incentivised to support the same APIs as web browsers. However, without a specification of which web platform APIs to be implemented, the resulting landscape provides poor interoperability across such environments.</p>
-  <p>As such, this Ecma Standard defines the Minimum common web API specification, which defines a subset of Web Platform APIs for server runtimes to implement for interoperability with the web. This is the first edition of the standard, corresponding to the 2025 snapshot. As the web platform and web server runtimes grow and evolve, the committee will aim to publish with an annual cadence.</p>
+  <p>As such, this Ecma Standard defines a minimum common web API, which identifies a subset of Web Platform APIs for server runtimes to implement for interoperability with the web. This is the first edition of the standard, corresponding to the 2025 snapshot. As the web platform and web server runtimes grow and evolve, the committee will aim to publish with a regular cadence.</p>
 </emu-intro>
 
 <emu-clause id="sec-scope">
   <h1>Scope</h1>
 
-  <p>This Standard defines the 2025 snapshot of the Minimum common web API, a curated subset of APIs defined by web platform standards from W3C and WHATWG, which is intended to define a minimum set of capabilities common to browser and web server runtime environments based on ECMAScript.</p>
+  <p>This Standard defines the 2025 snapshot of the minimum common web API, a curated subset of APIs within web platform standards from standards organizations such as W3C and WHATWG, which is intended to define a minimum set of capabilities common to browser and web server runtime environments based on ECMAScript.</p>
   <p>The intended audience for this Standard is for web server runtime environments that want to be interoperable with the web platform. However, the set of APIs it describes may be implemented by any ECMAScript-based runtime environment that aims to be web-interoperable, even if its primary purpose is unrelated to web servers.</p>
 </emu-clause>
 
 <emu-clause id="sec-conformance">
   <h1>Conformance</h1>
 
-  <p>A conforming implementation of this Standard shall provide the interfaces and properties listed in this specification, according to their definition in the corresponding W3C or WHATWG standard. A conforming implementation shall also conform to ECMA-262.</p>
+  <p>A conforming implementation of this Standard shall provide the interfaces and properties listed in this specification, according to their definition in the corresponding standard. A conforming implementation shall also conform to ECMA-262.</p>
   <p>Runtime-specific extensions to any Web Platform API may be implemented by conforming runtimes. Such extensions shall be defined so that their use neither contradicts with, nor causes the non-conformance of, normative functionality of any Web Platform API. Extending API surface, even without modifying existing API behaviours, should be avoided as it can reduce interoperability and portability of code across runtimes.</p>
   <p>Runtimes may implement Web Platform APIs beyond those listed in this Standard.</p>
 
